@@ -1,0 +1,28 @@
+input('Concept','IndividualContainer',concept,'/Users/jalmen/Dropbox/research/mdd/incquery/models/testBig_User_16.concept').
+output('Concept','IndividualContainer',concept2,'concept.xmi').
+rdf_db::ns(concept, 'http:://www.example.org/concept#').
+rdf_db::ns(concept2, 'http:://www.example.org/concept2#').
+
+metamodel(concept,[
+	  class(contains,['xsi:type','Signal_actualState','SwitchPosition_switchState','Segment_length']),
+	  role('TrackElement_sensor',contains,contains,"0","1"),
+	  role('TrackElement_connectsTo',contains,contains,"0","1"),
+	  role('Route_entry',contains,contains,"1","1"),
+          role('Route_switchPosition',contains,contains,"0","*"),
+	  role('Route_exit',contains,contains,"1","1"),
+	  role('Route_routeDefinition',contains,contains,"2","*"),
+	  role('SwitchPosition_switch',contains,contains,"1","1"),
+	  role('SwitchPosition_route',contains,contains,"1","1"),
+	  role('Sensor_trackElement',contains,contains,"0","*")]).
+
+metamodel(concept2,[
+	  class(contains,['xsi::type','Signal_actualState','SwitchPosition_switchState','Segment_length']),
+	  role('TrackElement_sensor',contains,contains,"0","1"),
+	  role('TrackElement_connectsTo',contains,contains,"0","1"),
+	  role('Route_entry',contains,contains,"1","1"),
+          role('Route_switchPosition',contains,contains,"0","*"),
+	  role('Route_exit',contains,contains,"1","1"),
+	  role('Route_routeDefinition',contains,contains,"2","*"),
+	  role('SwitchPosition_switch',contains,contains,"1","1"),
+	  role('SwitchPosition_route',contains,contains,"1","1"),
+	  role('Sensor_trackElement',contains,contains,"0","*")]).

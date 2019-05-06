@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="ISO-8859-1"?>
+<xmi:XMI xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns="Families">
+  <Family name="Peter" sons="//@Family.2 //@Family.3" daughters="//@Family.4"/>
+  <Family name="Jackie" sons="//@Family.2 //@Family.3" daughters="//@Family.4"/>
+  <Family name="David" father="//@Family.0" mother="//@Family.1" sons="//@Family.9 //@Family.10" daughters="//@Family.11"/>
+  <Family name="Dylan" father="//@Family.0" mother="//@Family.1"/>
+  <Family name="Kelly" father="//@Family.0" mother="//@Family.1"/>
+  <Family name="Jim" sons="//@Family.7" daughters="//@Family.8"/>
+  <Family name="Cindy" sons="//@Family.7" daughters="//@Family.8"/>
+  <Family name="Brandon" father="//@Family.5" mother="//@Family.6" />
+  <Family name="Brenda" father="//@Family.5" mother="//@Family.6" sons="//@Family.9 //@Family.10" daughters="//@Family.4"/>
+ <Family name="Martin" father="//@Family.2" mother="//@Family.8"/>
+  <Family name="Robert" father="//@Family.2" mother="//@Family.8"/>
+  <Family name="Mary" father="//@Family.2" mother="//@Family.8"/>  
+</xmi:XMI>

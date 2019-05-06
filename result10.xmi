@@ -1,0 +1,239 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<metamodelB:root
+    xmi:version="2.0"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xmlns:xmi="http://www.omg.org/XMI"
+    xmlns:metamodelB="http:://www.example.org/metamodelB"
+    xsi:schemaLocation="http:://www.example.org/metamodelB metamodelB.ecore">
+  <table name="r1" has="//@row.0 "/>
+  <table name="r1" has="//@row.1 "/>
+  <table name="r1" has="//@row.2 "/>
+  <table name="r1" has="//@row.3 "/>
+  <table name="r1" has="//@row.4 "/>
+  <table name="r1" has="//@row.5 "/>
+  <table name="r1" has="//@row.6 "/>
+  <table name="r1" has="//@row.7 "/>
+  <table name="r1" has="//@row.8 "/>
+  <table name="r1" has="//@row.9 "/>
+  <row
+      name="r1d1"
+      is_foreign="//@foreign.0 //@foreign.10 "
+      table="//@table.0 "/>
+  <row
+      name="r1d1"
+      is_foreign="//@foreign.1 //@foreign.11 "
+      table="//@table.1 "/>
+  <row
+      name="r1d1"
+      is_foreign="//@foreign.2 //@foreign.12 "
+      table="//@table.2 "/>
+  <row
+      name="r1d1"
+      is_foreign="//@foreign.3 //@foreign.13 "
+      table="//@table.3 "/>
+  <row
+      name="r1d1"
+      is_foreign="//@foreign.4 //@foreign.14 "
+      table="//@table.4 "/>
+  <row
+      name="r1d1"
+      is_foreign="//@foreign.5 //@foreign.15 "
+      table="//@table.5 "/>
+  <row
+      name="r1d1"
+      is_foreign="//@foreign.6 //@foreign.16 "
+      table="//@table.6 "/>
+  <row
+      name="r1d1"
+      is_foreign="//@foreign.7 //@foreign.17 "
+      table="//@table.7 "/>
+  <row
+      name="r1d1"
+      is_foreign="//@foreign.8 //@foreign.18 "
+      table="//@table.8 "/>
+  <row
+      name="r1d1"
+      is_foreign="//@foreign.9 //@foreign.19 "
+      table="//@table.9 "/>
+  <key name="a11" type="" has_key="//@row.10 "/>
+  <key name="a11" type="" has_key="//@row.11 "/>
+  <key name="a11" type="" has_key="//@row.12 "/>
+  <key name="a11" type="" has_key="//@row.13 "/>
+  <key name="a11" type="" has_key="//@row.14 "/>
+  <key name="a11" type="" has_key="//@row.15 "/>
+  <key name="a11" type="" has_key="//@row.16 "/>
+  <key name="a11" type="" has_key="//@row.17 "/>
+  <key name="a11" type="" has_key="//@row.18 "/>
+  <key name="a11" type="" has_key="//@row.19 "/>
+  <key name="a21" type="" has_key="//@row.20 "/>
+  <key name="a21" type="" has_key="//@row.21 "/>
+  <key name="a21" type="" has_key="//@row.22 "/>
+  <key name="a21" type="" has_key="//@row.23 "/>
+  <key name="a21" type="" has_key="//@row.24 "/>
+  <key name="a21" type="" has_key="//@row.25 "/>
+  <key name="a21" type="" has_key="//@row.26 "/>
+  <key name="a21" type="" has_key="//@row.27 "/>
+  <key name="a21" type="" has_key="//@row.28 "/>
+  <key name="a21" type="" has_key="//@row.29 "/>
+  <col name="a12" type="" has_col="//@row.10 "/>
+  <col name="a12" type="" has_col="//@row.11 "/>
+  <col name="a12" type="" has_col="//@row.12 "/>
+  <col name="a12" type="" has_col="//@row.13 "/>
+  <col name="a12" type="" has_col="//@row.14 "/>
+  <col name="a12" type="" has_col="//@row.15 "/>
+  <col name="a12" type="" has_col="//@row.16 "/>
+  <col name="a12" type="" has_col="//@row.17 "/>
+  <col name="a12" type="" has_col="//@row.18 "/>
+  <col name="a12" type="" has_col="//@row.19 "/>
+  <col name="a22" type="" has_col="//@row.20 "/>
+  <col name="a22" type="" has_col="//@row.21 "/>
+  <col name="a22" type="" has_col="//@row.22 "/>
+  <col name="a22" type="" has_col="//@row.23 "/>
+  <col name="a22" type="" has_col="//@row.24 "/>
+  <col name="a22" type="" has_col="//@row.25 "/>
+  <col name="a22" type="" has_col="//@row.26 "/>
+  <col name="a22" type="" has_col="//@row.27 "/>
+  <col name="a22" type="" has_col="//@row.28 "/>
+  <col name="a22" type="" has_col="//@row.29 "/>
+  <foreign name="r1d1a11" type="" has_foreign="//@row.0 "/>
+  <foreign name="r1d1a11" type="" has_foreign="//@row.1 "/>
+  <foreign name="r1d1a11" type="" has_foreign="//@row.2 "/>
+  <foreign name="r1d1a11" type="" has_foreign="//@row.3 "/>
+  <foreign name="r1d1a11" type="" has_foreign="//@row.4 "/>
+  <foreign name="r1d1a11" type="" has_foreign="//@row.5 "/>
+  <foreign name="r1d1a11" type="" has_foreign="//@row.6 "/>
+  <foreign name="r1d1a11" type="" has_foreign="//@row.7 "/>
+  <foreign name="r1d1a11" type="" has_foreign="//@row.8 "/>
+  <foreign name="r1d1a11" type="" has_foreign="//@row.9 "/>
+  <foreign name="r2d2a21" type="" has_foreign="//@row.0 "/>
+  <foreign name="r2d2a21" type="" has_foreign="//@row.1 "/>
+  <foreign name="r2d2a21" type="" has_foreign="//@row.2 "/>
+  <foreign name="r2d2a21" type="" has_foreign="//@row.3 "/>
+  <foreign name="r2d2a21" type="" has_foreign="//@row.4 "/>
+  <foreign name="r2d2a21" type="" has_foreign="//@row.5 "/>
+  <foreign name="r2d2a21" type="" has_foreign="//@row.6 "/>
+  <foreign name="r2d2a21" type="" has_foreign="//@row.7 "/>
+  <foreign name="r2d2a21" type="" has_foreign="//@row.8 "/>
+  <foreign name="r2d2a21" type="" has_foreign="//@row.9 "/>
+  <table name="c1" has="//@row.10 "/>
+  <table name="c1" has="//@row.11 "/>
+  <table name="c1" has="//@row.12 "/>
+  <table name="c1" has="//@row.13 "/>
+  <table name="c1" has="//@row.14 "/>
+  <table name="c1" has="//@row.15 "/>
+  <table name="c1" has="//@row.16 "/>
+  <table name="c1" has="//@row.17 "/>
+  <table name="c1" has="//@row.18 "/>
+  <table name="c1" has="//@row.19 "/>
+  <table name="c2" has="//@row.20 "/>
+  <table name="c2" has="//@row.21 "/>
+  <table name="c2" has="//@row.22 "/>
+  <table name="c2" has="//@row.23 "/>
+  <table name="c2" has="//@row.24 "/>
+  <table name="c2" has="//@row.25 "/>
+  <table name="c2" has="//@row.26 "/>
+  <table name="c2" has="//@row.27 "/>
+  <table name="c2" has="//@row.28 "/>
+  <table name="c2" has="//@row.29 "/>
+  <row
+      name="d1"
+      is_col="//@col.0 "
+      is_key="//@key.0 "
+      table="//@table.10 "/>
+  <row
+      name="d1"
+      is_col="//@col.1 "
+      is_key="//@key.1 "
+      table="//@table.11 "/>
+  <row
+      name="d1"
+      is_col="//@col.2 "
+      is_key="//@key.2 "
+      table="//@table.12 "/>
+  <row
+      name="d1"
+      is_col="//@col.3 "
+      is_key="//@key.3 "
+      table="//@table.13 "/>
+  <row
+      name="d1"
+      is_col="//@col.4 "
+      is_key="//@key.4 "
+      table="//@table.14 "/>
+  <row
+      name="d1"
+      is_col="//@col.5 "
+      is_key="//@key.5 "
+      table="//@table.15 "/>
+  <row
+      name="d1"
+      is_col="//@col.6 "
+      is_key="//@key.6 "
+      table="//@table.16 "/>
+  <row
+      name="d1"
+      is_col="//@col.7 "
+      is_key="//@key.7 "
+      table="//@table.17 "/>
+  <row
+      name="d1"
+      is_col="//@col.8 "
+      is_key="//@key.8 "
+      table="//@table.18 "/>
+  <row
+      name="d1"
+      is_col="//@col.9 "
+      is_key="//@key.9 "
+      table="//@table.19 "/>
+  <row
+      name="d2"
+      is_col="//@col.10 "
+      is_key="//@key.10 "
+      table="//@table.20 "/>
+  <row
+      name="d2"
+      is_col="//@col.11 "
+      is_key="//@key.11 "
+      table="//@table.21 "/>
+  <row
+      name="d2"
+      is_col="//@col.12 "
+      is_key="//@key.12 "
+      table="//@table.22 "/>
+  <row
+      name="d2"
+      is_col="//@col.13 "
+      is_key="//@key.13 "
+      table="//@table.23 "/>
+  <row
+      name="d2"
+      is_col="//@col.14 "
+      is_key="//@key.14 "
+      table="//@table.24 "/>
+  <row
+      name="d2"
+      is_col="//@col.15 "
+      is_key="//@key.15 "
+      table="//@table.25 "/>
+  <row
+      name="d2"
+      is_col="//@col.16 "
+      is_key="//@key.16 "
+      table="//@table.26 "/>
+  <row
+      name="d2"
+      is_col="//@col.17 "
+      is_key="//@key.17 "
+      table="//@table.27 "/>
+  <row
+      name="d2"
+      is_col="//@col.18 "
+      is_key="//@key.18 "
+      table="//@table.28 "/>
+  <row
+      name="d2"
+      is_col="//@col.19 "
+      is_key="//@key.19 "
+      table="//@table.29 "/>
+</metamodelB:root>

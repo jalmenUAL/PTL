@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<metamodelB:root
+    xmi:version="2.0"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xmlns:xmi="http://www.omg.org/XMI"
+    xmlns:metamodelB="http:://www.example.org/metamodelB"
+    xsi:schemaLocation="http:://www.example.org/metamodelB metamodelB.ecore">
+  <table name="register" has="//@row.0 "/>
+  <row
+      name="registerCourse"
+      is_foreign="//@foreign.1 //@foreign.0 "
+      table="//@table.0 "/>
+  <key name="id_student" type="int" has_key="//@row.1 "/>
+  <key name="id_course" type="int" has_key="//@row.2 "/>
+  <col name="name" type="String" has_col="//@row.1 "/>
+  <col name="age" type="int" has_col="//@row.1 "/>
+  <col name="title" type="String" has_col="//@row.2 "/>
+  <col name="credits" type="float" has_col="//@row.2 "/>
+  <foreign
+      name="registerCourseid_course"
+      type="int"
+      has_foreign="//@row.0 "/>
+  <foreign
+      name="is_registeredCourseid_student"
+      type="int"
+      has_foreign="//@row.0 "/>
+  <table name="the_students" has="//@row.1 "/>
+  <table name="the_courses" has="//@row.2 "/>
+  <row
+      name="Course"
+      is_col="//@col.0 //@col.1 "
+      is_key="//@key.0 "
+      table="//@table.1 "/>
+  <row
+      name="Course"
+      is_col="//@col.2 //@col.3 "
+      is_key="//@key.1 "
+      table="//@table.2 "/>
+</metamodelB:root>

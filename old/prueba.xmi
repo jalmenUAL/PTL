@@ -1,0 +1,47 @@
+<!DOCTYPE metamodelB:root []>
+
+<metamodelB:root
+    xmi:version="2.0"
+    xmlns:xmi="http://www.omg.org/XMI"
+    xmlns:metamodelB="http://www.example.orgmetamodelB">
+  <table name=""/>
+  <table name=""/>
+  <table name=""/>
+  <table name=""/>
+  <table name=""/>
+  <table name=""/>
+  <table name=""/>
+  <table name=""/>
+  <table name=""/>
+  <table name=""/>
+  <key name="" type=""/>
+  <key name="" type=""/>
+  <key name="" type=""/>
+  <key name="" type=""/>
+  <key name="" type=""/>
+  <key name="" type=""/>
+  <key name="" type=""/>
+  <key name="" type=""/>
+  <key name="" type=""/>
+  <key name="" type=""/>
+  <table name="" has=" //@row.0"/>
+  <table name="" has=" //@row.1"/>
+  <table name="" has=" //@row.2"/>
+  <table name="" has=" //@row.3"/>
+  <table name="" has=" //@row.4"/>
+  <table name="" has=" //@row.5"/>
+  <table name="" has=" //@row.6"/>
+  <table name="" has=" //@row.7"/>
+  <table name="" has=" //@row.8"/>
+  <table name="" has=" //@row.9"/>
+  <row name="" table=" //@table.10"/>
+  <row name="" table=" //@table.11"/>
+  <row name="" table=" //@table.12"/>
+  <row name="" table=" //@table.13"/>
+  <row name="" table=" //@table.14"/>
+  <row name="" table=" //@table.15"/>
+  <row name="" table=" //@table.16"/>
+  <row name="" table=" //@table.17"/>
+  <row name="" table=" //@table.18"/>
+  <row name="" table=" //@table.19"/>
+</metamodelB:root>

@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<xmi:XMI
+    xmi:version="2.0"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xmlns:xmi="http://www.omg.org/XMI">
+  <Book title="livre" chapters="//@Chapter.0 ">
+    <chapters title="chapter 1" nbPages="13" author="toto"/>
+  </Book>
+  <Book title="livre" chapters="//@Chapter.1 ">
+    <chapters title="chapter 2" nbPages="17" author="toto"/>
+  </Book>
+  <Book title="livre" chapters="//@Chapter.2 ">
+    <chapters title="chapter 3" nbPages="20" author="titi"/>
+  </Book>
+  <Book title="article" chapters="//@Chapter.3 ">
+    <chapters title="chapter 1" nbPages="13" author="Michel"/>
+  </Book>
+  <Book title="article" chapters="//@Chapter.4 ">
+    <chapters title="chapter 2" nbPages="1" author="David"/>
+  </Book>
+</xmi:XMI>

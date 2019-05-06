@@ -1,0 +1,38 @@
+
+input('xmi','XMI',book,'modelBook.ecore').
+output('xmi','XMI',publication,'modelPublication.ecore').
+rdf_db::ns(book, 'http:://www.example.org/book#').
+rdf_db::ns(publication, 'http:://www.example.org/publication#').
+
+metamodel(book,[
+	class('Book',[title]),
+	class('Chapter',[title,nbPages,author]),
+	role(chapters,'Book','Chapter',"0","*",container)]
+).
+metamodel(publication,[class('Publication',[title,authors,nbPages])]
+).
+
+
+helper(getAuthors).
+
+getAuthors(B,Authors):-
+		 bagof(Author,(C^'Book_chapters'(book,B,C),
+		'Chapter_author'(book,C,Author)),L),
+		concat_atom(L,' and ',Authors).
+
+helper(getSumPages).
+
+getSumPages(B,Total):- bagof(Pages,(C^SPages^'Book_chapters'(book,B,C),
+			'Chapter_nbPages'(book,C,SPages),
+			atom_number(SPages,Pages)),LPages),
+			sumlist(LPages,Total).
+
+rule book2Publication from
+		(b::book#'Book') where (getSumPages(b)>2)
+
+		to 
+		(out::publication#'Publication'(title <- b@title,
+                    authors <- getAuthors(b),
+		    nbPages <- getSumPages(b)
+		    )
+		  ).

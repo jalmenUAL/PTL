@@ -1,0 +1,75 @@
+<?xml version="1.0"?>
+<metamodelA:root
+    xmi:version="2.0"
+    xmlns:xmi="http://www.omg.org/XMI"    
+    xmlns:metamodelA="http://www.example.org/metamodelA">
+  <store contains="//@data.0"
+      name="DB_Students"/>
+  <store contains="//@data.1"
+      name="DB_Courses"/>
+  <data contained_in="//@store.0"
+      name="Course"
+      container="the_students"
+      attr_of="//@attribute.2 //@attribute.1 //@attribute.0"
+      role_of="//@role.0"/>
+  <data contained_in="//@store.1"
+      name="Course"
+      container="the_courses"
+      attr_of="//@attribute.3 //@attribute.4 //@attribute.5"
+      role_of="//@role.1"/>
+  <attribute
+      name="id_student"
+      type="int"
+      key="true"
+      is="//@data.0"/>
+  <attribute
+      name="name"
+      type="String"
+      key="false"
+      is="//@data.0"/>
+  <attribute
+      name="age"
+      type="int"
+      key="false"
+      is="//@data.0"/>
+  <attribute
+      name="id_course"
+      type="int"
+      key="true"
+      is="//@data.1"/>
+  <attribute
+      name="title"
+      type="String"
+      key="false"
+      is="//@data.1"/>
+  <attribute
+      name="credits"
+      type="float"
+      key="false"
+      is="//@data.1"/>
+  <role name="is_registered"
+      navigable="false"
+      min="0"
+      max="*"
+      has_role="//@relation.0"
+      is="//@qualifier.0"
+      is_data="//@data.0"/>
+  <role name="register"
+      navigable="true"
+      min="0"
+      max="*"
+      has_role="//@relation.0"
+      is="//@qualifier.1"
+      is_data="//@data.1"/>
+  <qualifier
+      name="id_student"
+      type="int"
+      has="//@role.0"/>
+  <qualifier
+      name="id_course"
+      type="int"
+      has="//@role.1"/>
+  <relation
+      name=""
+      is_role="//@role.0 //@role.1"/>
+</metamodelA:root>

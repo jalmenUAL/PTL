@@ -1,0 +1,97 @@
+<!DOCTYPE MetamodelA:root []>
+
+<MetamodelA:root
+    xmi:version="2.0"
+    xmlns:xmi="http://www.omg.org/XMI"
+    xmlns:MetamodelA="http://www.example.orgMetamodelA">
+  <store name="" contains=" //@data.0"/>
+  <store name="" contains=" //@data.1"/>
+  <store name="" contains=" //@data.2"/>
+  <store name="" contains=" //@data.3"/>
+  <store name="" contains=" //@data.4"/>
+  <data
+      name=""
+      container=""
+      attr_of=" //@attribute.0"
+      contained_in=" //@store.0"
+      role_of=" //@role.0"/>
+  <data
+      name=""
+      container=""
+      attr_of=" //@attribute.1"
+      contained_in=" //@store.1"
+      role_of=" //@role.1"/>
+  <data
+      name=""
+      container=""
+      attr_of=" //@attribute.2"
+      contained_in=" //@store.2"
+      role_of=" //@role.2"/>
+  <data
+      name=""
+      container=""
+      attr_of=" //@attribute.3"
+      contained_in=" //@store.3"
+      role_of=" //@role.3"/>
+  <data
+      name=""
+      container=""
+      attr_of=" //@attribute.4"
+      contained_in=" //@store.4"
+      role_of=" //@role.4"/>
+  <attribute name="" type="" key="true" is=" //@data.0"/>
+  <attribute name="" type="" key="true" is=" //@data.1"/>
+  <attribute name="" type="" key="true" is=" //@data.2"/>
+  <attribute name="" type="" key="true" is=" //@data.3"/>
+  <attribute name="" type="" key="true" is=" //@data.4"/>
+  <relation name="" is_role=" //@role.0"/>
+  <relation name="" is_role=" //@role.1"/>
+  <relation name="" is_role=" //@role.2"/>
+  <relation name="" is_role=" //@role.3"/>
+  <relation name="" is_role=" //@role.4"/>
+  <role
+      name=""
+      navigable="true"
+      min="0"
+      max="*"
+      has_role=" //@relation.0"
+      id_data=" //@data.0"
+      is=" //@qualifier.0"/>
+  <role
+      name=""
+      navigable="true"
+      min="0"
+      max="*"
+      has_role=" //@relation.1"
+      id_data=" //@data.1"
+      is=" //@qualifier.1"/>
+  <role
+      name=""
+      navigable="true"
+      min="0"
+      max="*"
+      has_role=" //@relation.2"
+      id_data=" //@data.2"
+      is=" //@qualifier.2"/>
+  <role
+      name=""
+      navigable="true"
+      min="0"
+      max="*"
+      has_role=" //@relation.3"
+      id_data=" //@data.3"
+      is=" //@qualifier.3"/>
+  <role
+      name=""
+      navigable="true"
+      min="0"
+      max="*"
+      has_role=" //@relation.4"
+      id_data=" //@data.4"
+      is=" //@qualifier.4"/>
+  <qualifier name="" type="" has=" //@role.0"/>
+  <qualifier name="" type="" has=" //@role.1"/>
+  <qualifier name="" type="" has=" //@role.2"/>
+  <qualifier name="" type="" has=" //@role.3"/>
+  <qualifier name="" type="" has=" //@role.4"/>
+</MetamodelA:root>

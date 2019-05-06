@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<xmi:XMI
+    xmi:version="2.0"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xmlns:xmi="http://www.omg.org/XMI">
+  <Person name="Peter"/>
+  <Person name="Jackie"/>
+  <Person
+      name="David"
+      ancestors="//@Person.1 //@Person.0 "
+      brothers="//@Person.3 "
+      sisters="//@Person.4 "/>
+  <Person
+      name="Dylan"
+      ancestors="//@Person.1 //@Person.0 "
+      brothers="//@Person.2 "
+      sisters="//@Person.4 "/>
+  <Person
+      name="Kelly"
+      ancestors="//@Person.1 //@Person.0 "
+      brothers="//@Person.2 //@Person.3 "/>
+  <Person name="Jim"/>
+  <Person name="Cindy"/>
+  <Person
+      name="Brandon"
+      ancestors="//@Person.5 //@Person.6 "
+      sisters="//@Person.8 "/>
+  <Person
+      name="Brenda"
+      ancestors="//@Person.5 //@Person.6 "
+      brothers="//@Person.7 "/>
+  <Person
+      name="Martin"
+      ancestors="//@Person.1 //@Person.2 //@Person.5 //@Person.6 //@Person.8 //@Person.0 "
+      aunts="//@Person.4 "
+      brothers="//@Person.10 "
+      sisters="//@Person.4 //@Person.11 "
+      uncles="//@Person.3 //@Person.7 "/>
+  <Person
+      name="Robert"
+      ancestors="//@Person.1 //@Person.2 //@Person.5 //@Person.6 //@Person.8 //@Person.0 "
+      aunts="//@Person.4 "
+      brothers="//@Person.9 "
+      sisters="//@Person.4 //@Person.11 "
+      uncles="//@Person.3 //@Person.7 "/>
+  <Person
+      name="Mary"
+      ancestors="//@Person.1 //@Person.2 //@Person.5 //@Person.6 //@Person.8 //@Person.0 "
+      aunts="//@Person.4 "
+      brothers="//@Person.9 //@Person.10 "
+      sisters="//@Person.4 "
+      uncles="//@Person.3 //@Person.7 "/>
+</xmi:XMI>

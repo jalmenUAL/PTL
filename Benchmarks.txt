@@ -1,0 +1,64 @@
+Prueba 10
+
+er2rl executed in 0,066s.
+
+0.00 seconds
+0.07 seconds
+
+query1 executed in 0,005s.
+
+0.00 seconds
+
+Prueba 50.
+
+er2rl executed in 0,077s.
+
+0.02 seconds
+0.50 seconds
+
+query1 executed in 0,04s.
+
+0.04 seconds
+
+Prueba 100.
+
+er2rl executed in 0,333s.
+
+0.05 seconds
+1.56 seconds
+
+query1 executed in 0,175s.
+ 0.17 seconds
+
+Prueba 200.
+
+er2rl executed in 1,091s.
+
+0.08 seconds
+2.20 seconds
+
+query1 executed in 0,703s.
+0.66 seconds
+
+Prueba 500.
+
+er2rl executed in 6,927s.
+
+0.22 seconds
+23.54 seconds
+
+query1 executed in 4,615s.
+
+ 4.24 seconds
+
+Prueba 1000.
+
+er2rl executed in 27,972s.
+
+0.46 seconds
+44.64 seconds
+
+
+query1 executed in 19,582s.
+
+18.26 seconds

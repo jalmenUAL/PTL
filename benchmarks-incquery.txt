@@ -1,0 +1,266 @@
+time(findall(Individual,switchSensor(Individual),L1)),time(findall(Source,posLength(Source,Target),L2)),time(findall(Sen,routeSensor(Sen,Sw,Sp,R),L3)),time(findall(R1,signalNeighbor(R1),L2)).
+
+
+=1=
+% incquery.pl compiled 0.00 sec, 7 clauses
+Compiling Metamodels: 
+% 311 inferences, 0.000 CPU in 0.000 seconds (97% CPU, 2073333 Lips)
+Compiling Rules: 
+% 4 inferences, 0.000 CPU in 0.000 seconds (74% CPU, 444444 Lips)
+Load input:
+% 252,815 inferences, 0.108 CPU in 0.114 seconds (95% CPU, 2338541 Lips)
+fromEcore: 
+% 1,022,057 inferences, 0.261 CPU in 0.273 seconds (96% CPU, 3922073 Lips)
+Conditions:
+% 2 inferences, 0.000 CPU in 0.000 seconds (74% CPU, 25641 Lips)
+Objects:
+% 2 inferences, 0.000 CPU in 0.000 seconds (80% CPU, 166667 Lips)
+Associations:
+% 2 inferences, 0.000 CPU in 0.000 seconds (71% CPU, 200000 Lips)
+toECore: 
+% 15 inferences, 0.000 CPU in 0.000 seconds (92% CPU, 468750 Lips)
+Write Output: 
+% 718 inferences, 0.000 CPU in 0.008 seconds (5% CPU, 1879581 Lips)
+
+% 37,932 inferences, 0.017 CPU in 0.017 seconds (97% CPU, 2229458 Lips)
+% 45,579 inferences, 0.016 CPU in 0.016 seconds (100% CPU, 2927548 Lips)
+% 10,701 inferences, 0.005 CPU in 0.005 seconds (99% CPU, 2069026 Lips)
+
+=2=
+% incquery.pl compiled 0.00 sec, 5 clauses
+Compiling Metamodels: 
+% 309 inferences, 0.000 CPU in 0.000 seconds (98% CPU, 716937 Lips)
+Compiling Rules: 
+% 4 inferences, 0.000 CPU in 0.000 seconds (77% CPU, 200000 Lips)
+Load input:
+% 490,642 inferences, 0.288 CPU in 0.297 seconds (97% CPU, 1701338 Lips)
+fromEcore: 
+% 1,967,828 inferences, 0.793 CPU in 0.799 seconds (99% CPU, 2481379 Lips)
+Conditions:
+% 2 inferences, 0.000 CPU in 0.000 seconds (72% CPU, 29412 Lips)
+Objects:
+% 2 inferences, 0.000 CPU in 0.000 seconds (78% CPU, 181818 Lips)
+Associations:
+% 2 inferences, 0.000 CPU in 0.000 seconds (71% CPU, 250000 Lips)
+toECore: 
+% 15 inferences, 0.000 CPU in 0.000 seconds (90% CPU, 441176 Lips)
+Write Output: 
+% 656 inferences, 0.000 CPU in 0.008 seconds (4% CPU, 2193980 Lips)
+
+% 73,540 inferences, 0.040 CPU in 0.040 seconds (100% CPU, 1823547 Lips)
+% 88,490 inferences, 0.027 CPU in 0.028 seconds (98% CPU, 3270503 Lips)
+% 20,659 inferences, 0.011 CPU in 0.011 seconds (99% CPU, 1934182 Lips)
+
+=4=
+% incquery.pl compiled 0.00 sec, 5 clauses
+Compiling Metamodels: 
+% 309 inferences, 0.000 CPU in 0.000 seconds (95% CPU, 867978 Lips)
+Compiling Rules: 
+% 4 inferences, 0.000 CPU in 0.000 seconds (77% CPU, 285714 Lips)
+Load input:
+% 971,144 inferences, 0.499 CPU in 0.544 seconds (92% CPU, 1947816 Lips)
+fromEcore: 
+% 3,897,273 inferences, 1.630 CPU in 1.637 seconds (100% CPU, 2391273 Lips)
+Conditions:
+% 2 inferences, 0.000 CPU in 0.000 seconds (81% CPU, 66667 Lips)
+Objects:
+% 2 inferences, 0.000 CPU in 0.000 seconds (74% CPU, 166667 Lips)
+Associations:
+% 2 inferences, 0.000 CPU in 0.000 seconds (78% CPU, 200000 Lips)
+toECore: 
+% 15 inferences, 0.000 CPU in 0.000 seconds (92% CPU, 416667 Lips)
+Write Output: 
+% 656 inferences, 0.000 CPU in 0.008 seconds (4% CPU, 1946588 Lips)
+
+
+% 145,446 inferences, 0.088 CPU in 0.089 seconds (100% CPU, 1644535 Lips)
+% 175,192 inferences, 0.056 CPU in 0.056 seconds (100% CPU, 3123632 Lips)
+% 40,766 inferences, 0.018 CPU in 0.018 seconds (100% CPU, 2223155 Lips)
+
+==8==
+
+% incquery.pl compiled 0.00 sec, 5 clauses
+Compiling Metamodels: 
+% 309 inferences, 0.000 CPU in 0.000 seconds (75% CPU, 887931 Lips)
+Compiling Rules: 
+% 4 inferences, 0.000 CPU in 0.000 seconds (77% CPU, 285714 Lips)
+Load input:
+% 1,957,654 inferences, 1.041 CPU in 1.060 seconds (98% CPU, 1880618 Lips)
+fromEcore: 
+% 7,855,472 inferences, 3.686 CPU in 3.701 seconds (100% CPU, 2131432 Lips)
+Conditions:
+% 2 inferences, 0.000 CPU in 0.000 seconds (76% CPU, 57143 Lips)
+Objects:
+% 2 inferences, 0.000 CPU in 0.000 seconds (78% CPU, 181818 Lips)
+Associations:
+% 2 inferences, 0.000 CPU in 0.000 seconds (74% CPU, 222222 Lips)
+toECore: 
+% 15 inferences, 0.000 CPU in 0.000 seconds (92% CPU, 468750 Lips)
+Write Output: 
+% 656 inferences, 0.000 CPU in 0.008 seconds (4% CPU, 2238908 Lips)
+true.
+
+% 293,117 inferences, 0.226 CPU in 0.226 seconds (100% CPU, 1299398 Lips)
+% 353,144 inferences, 0.108 CPU in 0.108 seconds (100% CPU, 3267855 Lips)
+% 81,966 inferences, 0.035 CPU in 0.035 seconds (100% CPU, 2353384 Lips)
+
+==16==
+
+% incquery.pl compiled 0.00 sec, 5 clauses
+Compiling Metamodels: 
+% 309 inferences, 0.000 CPU in 0.000 seconds (97% CPU, 1123636 Lips)
+Compiling Rules: 
+% 4 inferences, 0.000 CPU in 0.000 seconds (75% CPU, 266667 Lips)
+Load input:
+% 3,661,674 inferences, 1.855 CPU in 1.883 seconds (99% CPU, 1973648 Lips)
+fromEcore: 
+% 14,686,779 inferences, 8.644 CPU in 8.673 seconds (100% CPU, 1699043 Lips)
+Conditions:
+% 2 inferences, 0.000 CPU in 0.000 seconds (61% CPU, 33898 Lips)
+Objects:
+% 2 inferences, 0.000 CPU in 0.000 seconds (70% CPU, 125000 Lips)
+Associations:
+% 2 inferences, 0.000 CPU in 0.000 seconds (77% CPU, 153846 Lips)
+toECore: 
+% 15 inferences, 0.000 CPU in 0.000 seconds (92% CPU, 312500 Lips)
+Write Output: 
+% 656 inferences, 0.000 CPU in 0.009 seconds (5% CPU, 1518519 Lips)
+true.
+
+% 548,545 inferences, 0.557 CPU in 0.559 seconds (100% CPU, 984584 Lips)
+% 660,244 inferences, 0.186 CPU in 0.187 seconds (100% CPU, 3540543 Lips)
+% 153,714 inferences, 0.078 CPU in 0.078 seconds (100% CPU, 1974515 Lips)
+
+==32==
+
+% incquery.pl compiled 0.00 sec, 5 clauses
+Compiling Metamodels: 
+% 309 inferences, 0.000 CPU in 0.000 seconds (98% CPU, 711982 Lips)
+Compiling Rules: 
+% 4 inferences, 0.000 CPU in 0.000 seconds (74% CPU, 235294 Lips)
+Load input:
+% 7,363,975 inferences, 3.873 CPU in 3.936 seconds (98% CPU, 1901274 Lips)
+fromEcore: 
+% 29,530,692 inferences, 22.387 CPU in 22.546 seconds (99% CPU, 1319084 Lips)
+Conditions:
+% 2 inferences, 0.000 CPU in 0.000 seconds (80% CPU, 55556 Lips)
+Objects:
+% 2 inferences, 0.000 CPU in 0.000 seconds (71% CPU, 133333 Lips)
+Associations:
+% 2 inferences, 0.000 CPU in 0.000 seconds (72% CPU, 153846 Lips)
+toECore: 
+% 15 inferences, 0.000 CPU in 0.000 seconds (90% CPU, 326087 Lips)
+Write Output: 
+% 656 inferences, 0.000 CPU in 0.008 seconds (6% CPU, 1438596 Lips)
+true.
+
+% 1,103,253 inferences, 1.352 CPU in 1.359 seconds (100% CPU, 815749 Lips)
+% 1,327,743 inferences, 0.401 CPU in 0.402 seconds (100% CPU, 3307409 Lips)
+% 308,944 inferences, 0.173 CPU in 0.173 seconds (100% CPU, 1787891 Lips)
+
+==64=
+ 
+% incquery.pl compiled 0.00 sec, 5 clauses
+Compiling Metamodels: 
+% 309 inferences, 0.000 CPU in 0.000 seconds (98% CPU, 1131868 Lips)
+Compiling Rules: 
+% 4 inferences, 0.000 CPU in 0.000 seconds (75% CPU, 333333 Lips)
+Load input:
+% 14,864,392 inferences, 9.288 CPU in 9.601 seconds (97% CPU, 1600397 Lips)
+fromEcore: 
+% 59,608,890 inferences, 63.644 CPU in 63.807 seconds (100% CPU, 936593 Lips)
+Conditions:
+% 2 inferences, 0.000 CPU in 0.000 seconds (71% CPU, 24096 Lips)
+Objects:
+% 2 inferences, 0.000 CPU in 0.000 seconds (72% CPU, 111111 Lips)
+Associations:
+% 2 inferences, 0.000 CPU in 0.000 seconds (70% CPU, 222222 Lips)
+toECore: 
+% 15 inferences, 0.000 CPU in 0.000 seconds (95% CPU, 454545 Lips)
+Write Output: 
+% 656 inferences, 0.000 CPU in 0.008 seconds (4% CPU, 2150820 Lips)
+true.
+
+% 2,226,914 inferences, 3.085 CPU in 3.095 seconds (100% CPU, 721949 Lips)
+% 2,680,081 inferences, 0.853 CPU in 0.854 seconds (100% CPU, 3142798 Lips)
+% 623,618 inferences, 0.394 CPU in 0.394 seconds (100% CPU, 1583217 Lips)
+
+=128=
+
+% incquery.pl compiled 0.00 sec, 5 clauses
+Compiling Metamodels: 
+% 309 inferences, 0.000 CPU in 0.000 seconds (98% CPU, 1166038 Lips)
+Compiling Rules: 
+% 4 inferences, 0.000 CPU in 0.000 seconds (74% CPU, 333333 Lips)
+Load input:
+% 29,697,813 inferences, 20.089 CPU in 20.673 seconds (97% CPU, 1478330 Lips)
+fromEcore: 
+% 119,101,490 inferences, 199.433 CPU in 200.052 seconds (100% CPU, 597201 Lips)
+Conditions:
+% 2 inferences, 0.000 CPU in 0.000 seconds (73% CPU, 55556 Lips)
+Objects:
+% 2 inferences, 0.000 CPU in 0.000 seconds (73% CPU, 125000 Lips)
+Associations:
+% 2 inferences, 0.000 CPU in 0.000 seconds (75% CPU, 133333 Lips)
+toECore: 
+% 15 inferences, 0.000 CPU in 0.000 seconds (90% CPU, 416667 Lips)
+Write Output: 
+% 656 inferences, 0.000 CPU in 0.001 seconds (26% CPU, 2402930 Lips)
+true.
+
+
+% 4,449,266 inferences, 7.000 CPU in 7.031 seconds (100% CPU, 635579 Lips)
+% 5,354,508 inferences, 1.763 CPU in 1.768 seconds (100% CPU, 3036680 Lips)
+% 1,246,497 inferences, 0.867 CPU in 0.870 seconds (100% CPU, 1436967 Lips)
+
+
+=256==
+
+% incquery.pl compiled 0.00 sec, 5 clauses
+Compiling Metamodels: 
+% 309 inferences, 0.000 CPU in 0.000 seconds (97% CPU, 1170455 Lips)
+Compiling Rules: 
+% 4 inferences, 0.000 CPU in 0.000 seconds (84% CPU, 400000 Lips)
+Load input:
+% 59,327,711 inferences, 61.606 CPU in 63.462 seconds (97% CPU, 963025 Lips)
+fromEcore: 
+% 237,933,384 inferences, 677.173 CPU in 680.314 seconds (100% CPU, 351363 Lips)
+Conditions:
+% 2 inferences, 0.000 CPU in 0.000 seconds (74% CPU, 24390 Lips)
+Objects:
+% 2 inferences, 0.000 CPU in 0.000 seconds (80% CPU, 166667 Lips)
+Associations:
+% 2 inferences, 0.000 CPU in 0.000 seconds (82% CPU, 222222 Lips)
+toECore: 
+% 15 inferences, 0.000 CPU in 0.000 seconds (92% CPU, 416667 Lips)
+Write Output: 
+% 656 inferences, 0.000 CPU in 0.001 seconds (33% CPU, 1596107 Lips)
+true.
+
+% 8,888,119 inferences, 15.247 CPU in 15.316 seconds (100% CPU, 582935 Lips)
+% 10,697,015 inferences, 3.734 CPU in 3.736 seconds (100% CPU, 2864805 Lips)
+% 2,489,737 inferences, 1.775 CPU in 1.776 seconds (100% CPU, 1402397 Lips)
+
+==512==
+
+% incquery512.pl compiled 0.00 sec, 5 clauses
+Compiling Metamodels: 
+% 309 inferences, 0.000 CPU in 0.000 seconds (99% CPU, 1568528 Lips)
+Compiling Rules: 
+% 4 inferences, 0.000 CPU in 0.000 seconds (80% CPU, 500000 Lips)
+Load input:
+% 118,886,645 inferences, 144.006 CPU in 147.858 seconds (97% CPU, 825565 Lips)
+fromEcore: 
+% 476,763,607 inferences, 1760.012 CPU in 5426.085 seconds (32% CPU, 270887 Lips)
+Conditions:
+% 2 inferences, 0.000 CPU in 0.000 seconds (22% CPU, 47619 Lips)
+Objects:
+% 2 inferences, 0.000 CPU in 0.000 seconds (35% CPU, 142857 Lips)
+Associations:
+% 2 inferences, 0.000 CPU in 0.000 seconds (69% CPU, 181818 Lips)
+toECore: 
+% 15 inferences, 0.000 CPU in 0.000 seconds (31% CPU, 306122 Lips)
+Write Output: 
+% 656 inferences, 0.000 CPU in 0.009 seconds (4% CPU, 1969970 Lips)
+true.
+

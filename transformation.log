@@ -1,0 +1,1736 @@
+Compiler: Syntax error
+
+:- dynamic table1_er2rl/1.
+
+table1_er2rl(A) :-
+	data_id(er, A).
+
+clean_transformation :-
+	retractall((rule _ from _)),
+	fail.
+clean_transformation :-
+	retractall(input(_, _)),
+	fail.
+clean_transformation :-
+	retractall(output(_, _)),
+	fail.
+clean_transformation.
+
+xmi_load(A) :-
+	load_facts(A).
+
+tracing(A, B) :-
+	clean_atl,
+	tell('tracing.log'),
+	tracing_files(A, B).
+
+validate_rules_one :-
+	A=..[vrule, B],
+	clause(A, C),
+	validate_body(B, C),
+	fail.
+
+:- dynamic input/2.
+:- multifile input/2.
+
+input(er, 'object-model-A.xmi').
+
+generate_id([], A, A).
+generate_id([C|A], B, E) :-
+	generate_id(A, B, D),
+	atom_concat(C, D, E).
+
+print_trace(A) :-
+	write('Traced Execution....'),
+	nl,
+	A=..[B, C, _|_],
+	write('Element: '),
+	write(B),
+	nl,
+	write('Metamodel: '),
+	write(C),
+	nl.
+
+:- dynamic class/3.
+
+
+:- dynamic attribute_is/3.
+
+attribute_is(er, A, B) :-
+	associationEnds(er, is, A, B).
+
+:- dynamic (from)/2.
+
+rule table1_er2rl from p::er#data to t::rl#table(name<-p@container, has<-r), r::rl#row(name<-p@name, table<-t, is_key<-resolveTemp(p@attr_of, k), is_col<-resolveTemp(p@attr_of, c)).
+rule table2_er2rl from p::er#role where p@navigable==true and p@max=='5'to t::rl#table(name<-p@name, has<-r), r::rl#row(name<-concat(p@name, p@is_data@name), table<-t, is_foreign<-sequence([resolveTemp((p@is, p), f1), resolveTemp((inverse1_qualifier(p), inverse2_qualifier(p)), f2)])).
+rule key_er2rl from p::er#attribute where p@key==true to k::rl#key(name<-p@name, type<-p@type, has_key<-resolveTemp(p@is, r)).
+rule col_er2rl from p::er#attribute where p@key==false to c::rl#col(name<-p@name, type<-p@type, has_col<-resolveTemp(p@is, r)).
+rule foreign1_er2rl from p::er#qualifier, q::er#role where p@has==q and q@navigable==true to f1::rl#foreign(name<-concat(concat(q@name, q@is_data@name), p@name), type<-p@type, has_foreign<-resolveTemp(q, r)).
+rule foreign2_er2rl from p::er#qualifier, q::er#role where p@has==q and q@navigable==false to f2::rl#foreign(name<-concat(concat(q@name, q@is_data@name), p@name), type<-p@type, has_foreign<-resolveTemp(inverse2_row(p), r)).
+
+generate_ids((C, A), B, E) :- !,
+	generate_ids(A, B, D),
+	atom_concat(C, D, E).
+generate_ids(A, B, C) :-
+	atom_concat(A, B, C).
+
+load_ecore(A) :-
+	element(B, _, C),
+	load_atts(A, B, C),
+	fail.
+load_ecore(B) :-
+	element(_, _, A),
+	load_associations(A, B),
+	fail.
+load_ecore(_).
+
+inverse1_qualifier(A, D) :-
+	associationEnds(er, has_role, A, B),
+	associationEnds(er, is_role, B, C),
+	role_navigable(er, C, false),
+	associationEnds(er, is, C, D).
+
+:- dynamic qualifier_id/2.
+
+qualifier_id(er, A) :-
+	qualifier(er, A, [name(_), type(_)]).
+
+:- dynamic row_is_foreign/3.
+
+row_is_foreign(rl, A, B) :-
+	associationEnds(rl, is_foreign, A, B).
+
+load_output_model :-
+	output(A, memory), !,
+	load_model(A).
+load_output_model :-
+	output(A, B),
+	load_model(A),
+	[mm2xmi],
+	xmi_write(B).
+
+:- dynamic foreign/3.
+
+foreign(rl, A, [name(B), type(C)]) :-
+	objectM(rl, foreign, A, _, [name(B), type(C)], _).
+
+write_xml(A, C) :-
+	open(A, write, B),
+	xml_write(B, C, []),
+	close(B).
+
+:- dynamic foreign2_er2rl/1.
+
+foreign2_er2rl((A, B)) :-
+	qualifier_id(er, A),
+	role_id(er, B),
+	C=B,
+	qualifier_has(er, A, C),
+	role_id(er, B),
+	D=false,
+	role_navigable(er, B, D),
+	true.
+
+:- dynamic object/6.
+
+object(rl, table, D, A, [name(B)], t) :-
+	table2_er2rl(A),
+	true,
+	role_name(er, A, C),
+	B=C,
+	generate_ids(A, t, D).
+object(rl, row, G, A, [name(E)], r) :-
+	table2_er2rl(A),
+	true,
+	true,
+	role_is_data(er, A, B),
+	data_name(er, B, D),
+	role_name(er, A, C),
+	concat(C, D, F),
+	E=F,
+	generate_ids(A, r, G).
+object(rl, key, F, A, [name(D), type(B)], k) :-
+	key_er2rl(A),
+	true,
+	attribute_type(er, A, C),
+	B=C,
+	attribute_name(er, A, E),
+	D=E,
+	generate_ids(A, k, F).
+object(rl, col, F, A, [name(D), type(B)], c) :-
+	col_er2rl(A),
+	true,
+	attribute_type(er, A, C),
+	B=C,
+	attribute_name(er, A, E),
+	D=E,
+	generate_ids(A, c, F).
+object(rl, foreign, L, (A, B), [name(J), type(C)], f1) :-
+	foreign1_er2rl((A, B)),
+	true,
+	qualifier_type(er, A, D),
+	C=D,
+	true,
+	qualifier_name(er, A, I),
+	true,
+	role_is_data(er, B, E),
+	data_name(er, E, G),
+	role_name(er, B, F),
+	concat(F, G, H),
+	concat(H, I, K),
+	J=K,
+	generate_ids((A, B), f1, L).
+object(rl, foreign, L, (A, B), [name(J), type(C)], f2) :-
+	foreign2_er2rl((A, B)),
+	true,
+	qualifier_type(er, A, D),
+	C=D,
+	true,
+	qualifier_name(er, A, I),
+	true,
+	role_is_data(er, B, E),
+	data_name(er, E, G),
+	role_name(er, B, F),
+	concat(F, G, H),
+	concat(H, I, K),
+	J=K,
+	generate_ids((A, B), f2, L).
+object(rl, table, D, A, [name(B)], t) :-
+	table1_er2rl(A),
+	true,
+	data_container(er, A, C),
+	B=C,
+	generate_ids(A, t, D).
+object(rl, row, D, A, [name(B)], r) :-
+	table1_er2rl(A),
+	true,
+	data_name(er, A, C),
+	B=C,
+	generate_ids(A, r, D).
+
+generate_metamodel(A) :-
+	metamodel(A, B), !,
+	generate_elems(B, A).
+
+:- dynamic col_name/3.
+
+col_name(rl, A, B) :-
+	col(rl, A, [name(B), type(_)]).
+
+:- dynamic relation_name/3.
+
+relation_name(er, A, B) :-
+	relation(er, A, [name(B)]).
+
+pointer_to(B, A, C, D, E) :-
+	A=..[B, C, D, E], !.
+pointer_to(B, (A, _), C, D, E) :-
+	A=..[B, C, D, E], !.
+pointer_to(A, (_, B), C, D, E) :-
+	pointer_to(A, B, C, D, E).
+
+:- dynamic associationEnds/4.
+
+associationEnds(A, B, C, D) :-
+	associationObjectsM(A, B, C, D).
+associationEnds(er, contains, 6, 12).
+associationEnds(er, contains, 9, 18).
+associationEnds(er, contained_in, 12, 6).
+associationEnds(er, attr_of, 12, 33).
+associationEnds(er, attr_of, 12, 29).
+associationEnds(er, attr_of, 12, 24).
+associationEnds(er, role_of, 12, 50).
+associationEnds(er, contained_in, 18, 9).
+associationEnds(er, attr_of, 18, 37).
+associationEnds(er, attr_of, 18, 42).
+associationEnds(er, attr_of, 18, 46).
+associationEnds(er, role_of, 18, 56).
+associationEnds(er, is, 24, 12).
+associationEnds(er, is, 29, 12).
+associationEnds(er, is, 33, 12).
+associationEnds(er, is, 37, 18).
+associationEnds(er, is, 42, 18).
+associationEnds(er, is, 46, 18).
+associationEnds(er, has_role, 50, 71).
+associationEnds(er, is, 50, 63).
+associationEnds(er, is_data, 50, 12).
+associationEnds(er, has_role, 56, 71).
+associationEnds(er, is, 56, 67).
+associationEnds(er, is_data, 56, 18).
+associationEnds(er, has, 63, 50).
+associationEnds(er, has, 67, 56).
+associationEnds(er, is_role, 71, 50).
+associationEnds(er, is_role, 71, 56).
+
+:- dynamic key_id/2.
+
+key_id(rl, A) :-
+	key(rl, A, [name(_), type(_)]).
+
+%   Foreign: rl_read_history/1
+
+:- dynamic row_name/3.
+
+row_name(rl, A, B) :-
+	row(rl, A, [name(B)]).
+
+encode_list([], _, [], true).
+encode_list([A|D], B, [C|E], F) :-
+	encode(A, B, C, H),
+	encode_list(D, B, E, G),
+	F= (G, H).
+
+tracing_files([A], B) :- !,
+	trace_atl(A, B).
+tracing_files([A|B], C) :-
+	atl(A),
+	tracing_files(B, C).
+
+clean_validation :-
+	retractall(vrule(_)).
+
+:- dynamic class_def/3.
+
+class_def(data, [name, container], er).
+class_def(store, [name], er).
+class_def(attribute, [name, type, key], er).
+class_def(relation, [name], er).
+class_def(role, [name, navigable, min, max], er).
+class_def(qualifier, [name, type], er).
+class_def(table, [name], rl).
+class_def(row, [name], rl).
+class_def(key, [name, type], rl).
+class_def(foreign, [name, type], rl).
+class_def(col, [name, type], rl).
+
+encode_boolean((A==E), (C=F, D, G), B) :-
+	encode(A, B, C, D),
+	encode(E, B, F, G).
+encode_boolean((A=\=E), (C\=F, D, G), B) :-
+	encode(A, B, C, D),
+	encode(E, B, F, G).
+
+:- dynamic property/3.
+
+
+:- dynamic data_id/2.
+
+data_id(er, A) :-
+	data(er, A, [name(_), container(_)]).
+
+load_att(A, E) :-
+	findall(B, (att(C, D, A, _), B=..[C, D], \+sub_atom(D, _, _, _, //@)), E).
+
+:- dynamic data_attr_of/3.
+
+data_attr_of(er, A, B) :-
+	associationEnds(er, attr_of, A, B).
+
+:- dynamic metamodel/2.
+:- multifile metamodel/2.
+
+metamodel(er, [class(data, [name, container]), class(store, [name]), class(attribute, [name, type, key]), class(relation, [name]), class(role, [name, navigable, min, max]), class(qualifier, [name, type]), role(contains, store, data, [49], [49]), role(contained_in, data, store, [49], [49]), role(attr_of, data, attribute, [48], [42]), role(is, attribute, data, [49], [49]), role(has_role, role, relation, [49], [49]), role(is_role, relation, role, [49], [42]), role(has, qualifier, role, [49], [49]), role(is, role, qualifier, [48], [42]), role(is_data, role, data, [49], [49]), role(role_of, data, role, [49], [49])]).
+metamodel(rl, [class(table, [name]), class(row, [name]), class(key, [name, type]), class(foreign, [name, type]), class(col, [name, type]), role(has, table, row, [49], [49]), role(table, row, table, [49], [49]), role(has_key, key, row, [49], [49]), role(is_key, row, key, [48], [42]), role(is_foreign, row, foreign, [48], [42]), role(has_foreign, foreign, row, [49], [49]), role(has_col, col, row, [49], [49]), role(is_col, row, col, [48], [42])]).
+
+load_model_deb(A) :-
+	retractall(objectM(A, _, _, _, _, _)),
+	fail.
+load_model_deb(A) :-
+	retractall(associationObjectsM(A, _, _, _)),
+	fail.
+load_model_deb(A) :-
+	debug_term(object(A, B, C, D, E, F)),
+	assert(objectM(A, B, C, D, E, F)),
+	fail.
+load_model_deb(A) :-
+	debug_term(associationObjects(A, B, C, D)),
+	assert(associationObjectsM(A, B, C, D)),
+	fail.
+load_model_deb(_).
+
+inverse2_qualifier(A, C) :-
+	associationEnds(er, has_role, A, B),
+	associationEnds(er, is_role, B, C),
+	role_navigable(er, C, false).
+
+:- dynamic foreign_has_foreign/3.
+
+foreign_has_foreign(rl, A, B) :-
+	associationEnds(rl, has_foreign, A, B).
+
+clean_vars((A, C), (B, D)) :- !,
+	A=..[_, B, _, _],
+	clean_vars(C, D).
+clean_vars(A, B) :-
+	A=..[_, B, _, _].
+
+:- dynamic role_max/3.
+
+role_max(er, A, B) :-
+	role(er, A, [name(_), navigable(_), min(_), max(B)]).
+
+generate_rule(A) :-
+	(   rule A from B to G
+	),
+	B= (C where D),
+	generate_pointers(C, E, I),
+	generate_conditions(D, J, E),
+	clean_vars(E, F),
+	H=..[A, F],
+	generate_head(G, E, H),
+	K=..[ (','), I, J],
+	assert((H:-K)),
+	recorda(pointer, H).
+generate_rule(A) :-
+	(   rule A from B to E
+	),
+	B\= (_ where _),
+	generate_pointers(B, C, G),
+	clean_vars(C, D),
+	F=..[A, D],
+	generate_head(E, C, F),
+	assert((F:-G)),
+	recorda(pointer, F).
+
+trace_elem(A) :-
+	clause(A, B),
+	call(B),
+	trace_atoms(B), !.
+
+debugging(A) :-
+	clean_atl,
+	tell('debugging.log'),
+	debugging_files(A).
+
+xmi_write(A) :-
+	xmi(B),
+	write_xml(A, [element('xmi:XMI', ['xmi:version'='2.1', 'xmlns:uml'='http://schema.omg.org/spec/UML/2.0', 'xmlns:xmi'='http://schema.omg.org/spec/XMI/2.1'], [element('xmi:Documentation', ['xmi:Exporter'='Visual Paradigm for UML', 'xmi:ExporterVersion'='6.2.1'], []), element('uml:Model', [name='mt-prolog'], [element(ownedMember, [name='Float', visibility=public, 'xmi:id'=float_id, 'xmi:type'='uml:DataType'], []), element(ownedMember, [name='String', visibility=public, 'xmi:id'='String_id', 'xmi:type'='uml:DataType'], []), element(ownedMember, [name='Int', visibility=public, 'xmi:id'=int_id, 'xmi:type'='uml:DataType'], [])|B])])]).
+
+generate_metamodels :-
+	generate_input_metamodel,
+	generate_output_metamodel.
+
+:- dynamic foreign_name/3.
+
+foreign_name(rl, A, B) :-
+	foreign(rl, A, [name(B), type(_)]).
+
+%   Foreign: rl_write_history/1
+
+atl(A) :-
+	rewrite(A, B),
+	[B],
+	generate_metamodels,
+	generate_rules,
+	catch(load_models, _, (write('Compiler: Syntax error'), nl, fail)),
+	clean_transformation.
+
+:- dynamic row_id/2.
+
+row_id(rl, A) :-
+	row(rl, A, [name(_)]).
+
+:- dynamic attribute_name/3.
+
+attribute_name(er, A, B) :-
+	attribute(er, A, [name(B), type(_), key(_)]).
+
+clean_atl :-
+	retractall((rule _ from _)),
+	fail.
+clean_atl :-
+	retractall(metamodel(_, _)),
+	fail.
+clean_atl :-
+	retractall(class_def(_, _, _)),
+	fail.
+clean_atl :-
+	retractall(role_def(_, _, _, _, _, _)),
+	fail.
+clean_atl :-
+	recorded(metamodel, A, B),
+	retractall(A),
+	erase(B),
+	fail.
+clean_atl :-
+	recorded(head, A, B),
+	retractall(A),
+	erase(B),
+	fail.
+clean_atl :-
+	recorded(access, A, B),
+	retractall(A),
+	erase(B),
+	fail.
+clean_atl :-
+	recorded(pointer, A, B),
+	retractall(A),
+	erase(B),
+	fail.
+clean_atl :-
+	retractall(input(_, _)),
+	fail.
+clean_atl :-
+	retractall(output(_, _)),
+	fail.
+clean_atl :-
+	retractall(associationObjects(_, _, _, _)),
+	fail.
+clean_atl :-
+	retractall(object(_, _, _, _, _, _)),
+	fail.
+clean_atl :-
+	clause(associationObjectsM(_, _, _, _), true),
+	retract((associationObjectsM(_, _, _, _):-true)),
+	fail.
+clean_atl :-
+	retractall(objectM(_, _, _, _, _, _)),
+	fail.
+clean_atl :-
+	retractall(att(_, _, _, _)),
+	fail.
+clean_atl :-
+	retractall(element(_, _, _)),
+	fail.
+clean_atl.
+
+:- dynamic table/3.
+
+table(rl, A, [name(B)]) :-
+	objectM(rl, table, A, _, [name(B)], _).
+
+:- dynamic associationObjects/4.
+
+associationObjects(rl, has, C, B) :-
+	table2_er2rl(A),
+	resolveTemp(A, r, B),
+	object(rl, table, C, A, _, t).
+associationObjects(rl, table, C, B) :-
+	table2_er2rl(A),
+	resolveTemp(A, t, B),
+	object(rl, row, C, A, _, r).
+associationObjects(rl, is_foreign, D, C) :-
+	table2_er2rl(A),
+	role_id(er, A),
+	role_is(er, A, B),
+	resolveTemp((B, A), f1, C),
+	object(rl, row, D, A, _, r).
+associationObjects(rl, is_foreign, E, D) :-
+	table2_er2rl(A),
+	true,
+	role_id(er, A),
+	inverse2_qualifier(A, C),
+	true,
+	role_id(er, A),
+	inverse1_qualifier(A, B),
+	resolveTemp((B, C), f2, D),
+	object(rl, row, E, A, _, r).
+associationObjects(rl, has_key, D, C) :-
+	key_er2rl(A),
+	attribute_is(er, A, B),
+	resolveTemp(B, r, C),
+	object(rl, key, D, A, _, k).
+associationObjects(rl, has_col, D, C) :-
+	col_er2rl(A),
+	attribute_is(er, A, B),
+	resolveTemp(B, r, C),
+	object(rl, col, D, A, _, c).
+associationObjects(rl, has_foreign, C, B) :-
+	foreign1_er2rl((D, A)),
+	role_id(er, A),
+	resolveTemp(A, r, B),
+	object(rl, foreign, C, (D, A), _, f1).
+associationObjects(rl, has_foreign, D, C) :-
+	foreign2_er2rl((A, E)),
+	true,
+	qualifier_id(er, A),
+	inverse2_row(A, B),
+	resolveTemp(B, r, C),
+	object(rl, foreign, D, (A, E), _, f2).
+associationObjects(rl, has, C, B) :-
+	table1_er2rl(A),
+	resolveTemp(A, r, B),
+	object(rl, table, C, A, _, t).
+associationObjects(rl, table, C, B) :-
+	table1_er2rl(A),
+	resolveTemp(A, t, B),
+	object(rl, row, C, A, _, r).
+associationObjects(rl, is_key, D, C) :-
+	table1_er2rl(A),
+	data_attr_of(er, A, B),
+	resolveTemp(B, k, C),
+	object(rl, row, D, A, _, r).
+associationObjects(rl, is_col, D, C) :-
+	table1_er2rl(A),
+	data_attr_of(er, A, B),
+	resolveTemp(B, c, C),
+	object(rl, row, D, A, _, r).
+
+:- dynamic objectM/6.
+
+objectM(rl, key, '24k', 24, [name(id_student), type(int)], k).
+objectM(rl, key, '37k', 37, [name(id_course), type(int)], k).
+objectM(rl, table, '12t', 12, [name(the_students)], t).
+objectM(rl, table, '18t', 18, [name(the_courses)], t).
+objectM(rl, row, '12r', 12, [name('Student')], r).
+objectM(rl, row, '18r', 18, [name('Course')], r).
+
+:- dynamic stereotype/3.
+
+
+transform_files([]) :- !.
+transform_files([A|B]) :-
+	atl(A),
+	transform_files(B).
+
+generate_each_association(_, [], _, _).
+generate_each_association(A, [B|E], C, D) :-
+	generate_each(A, B, C, D),
+	generate_each_association(A, E, C, D).
+
+:- dynamic relation_is_role/3.
+
+relation_is_role(er, A, B) :-
+	associationEnds(er, is_role, A, B).
+
+:- dynamic data/3.
+
+data(er, 12, [name('Student'), container(the_students)]).
+data(er, 18, [name('Course'), container(the_courses)]).
+
+inverse_row(A, E) :-
+	associationEnds(er, has, A, B),
+	associationEnds(er, has_role, B, C),
+	associationEnds(er, is_role, C, D),
+	role_navigable(er, D, true),
+	resolveTemp(D, r, E).
+
+:- dynamic identifier/1.
+
+identifier(72).
+
+:- dynamic qualifier_name/3.
+
+qualifier_name(er, A, B) :-
+	qualifier(er, A, [name(B), type(_)]).
+
+load_models :-
+	load_input_model,
+	load_output_model.
+
+:- dynamic key_has_key/3.
+
+key_has_key(rl, A, B) :-
+	associationEnds(rl, has_key, A, B).
+
+:- dynamic col_id/2.
+
+col_id(rl, A) :-
+	col(rl, A, [name(_), type(_)]).
+
+generate_rules :-
+	generate_rule(_),
+	fail.
+generate_rules.
+
+:- dynamic foreign_type/3.
+
+foreign_type(rl, A, B) :-
+	foreign(rl, A, [name(_), type(B)]).
+
+:- dynamic attribute_id/2.
+
+attribute_id(er, A) :-
+	attribute(er, A, [name(_), type(_), key(_)]).
+
+debug_atl(A) :-
+	nl,
+	write('DEBUGGER...........................'),
+	nl,
+	rewrite(A, B),
+	[B],
+	generate_metamodels,
+	generate_rules,
+	catch(load_models_deb, _, (write('Compiler: Syntax error'), nl, fail)),
+	clean_transformation.
+
+rewrite_file(A, _) :-
+	at_end_of_stream(A), !.
+rewrite_file(A, C) :-
+	get_char(A, B),
+	(   B=!
+	->  put(C, #)
+	;   B= :
+	->  get_char(A, D),
+	    (   D= -
+	    ->  put(C, B),
+		put(C, D)
+	    ;   put(C, :),
+		put(C, :),
+		put(C, D)
+	    )
+	;   put(C, B)
+	),
+	rewrite_file(A, C).
+
+%   Foreign: rl_add_history/1
+
+load_facts(A) :-
+	retractall(element(_, _, _)),
+	retractall(element-ecore(_, _, _)),
+	retractall(att(_, _, _, _)),
+	retractall(identifier(_)),
+	retractall(identifier-ecore(_)),
+	load_xml(A, B),
+	update(C),
+	facts(B, C).
+
+:- dynamic output/2.
+:- multifile output/2.
+
+output(rl, 'prueba.xmi').
+
+:- dynamic attribute/3.
+
+attribute(er, 24, [name(id_student), type(int), key(true)]).
+attribute(er, 29, [name(name), type('String')]).
+attribute(er, 33, [name(age), type(int)]).
+attribute(er, 37, [name(id_course), type(int), key(true)]).
+attribute(er, 42, [name(title), type('String')]).
+attribute(er, 46, [name(credits), type(float)]).
+
+:- dynamic table_name/3.
+
+table_name(rl, A, B) :-
+	table(rl, A, [name(B)]).
+
+validate(A, B) :-
+	clean_atl,
+	transform_files(A),
+	tell('validation.log'),
+	write('Validation................'),
+	nl,
+	validate_rules(B).
+validate(_, _) :-
+	clean_validation.
+
+trace_atoms((A, I)) :- !,
+	(   recorded(pointer, A)
+	->  write('Traced Execution....'),
+	    nl,
+	    write('Rule: '),
+	    A=..[B|_],
+	    write(B),
+	    nl,
+	    trace_elem(A)
+	;   recorded(head, A)
+	->  print_trace(A),
+	    nl,
+	    trace_elem(A)
+	;   A=..[B, _, C|_],
+	    class_def(B, _, _)
+	->  print_trace(A),
+	    write('xmi:id is '),
+	    att('xmi:id', D, C, _),
+	    write(D),
+	    nl,
+	    nl,
+	    trace_elem(A)
+	;   recorded(access, A)
+	->  trace_elem(A)
+	;   recorded(metamodel, A)
+	->  true
+	;   A=objectM(C, D, E, F, G, H)
+	->  trace_elem(object(C, D, E, F, G, H))
+	;   true
+	),
+	trace_atoms(I).
+trace_atoms(A) :-
+	(   recorded(pointer, A)
+	->  write('Traced Execution....'),
+	    nl,
+	    nl,
+	    write('Rule: '),
+	    A=..[B|_],
+	    write(B),
+	    nl,
+	    trace_elem(A)
+	;   recorded(head, A)
+	->  print_trace(A),
+	    nl,
+	    trace_elem(A)
+	;   A=..[B, _, C|_],
+	    class_def(B, _, _)
+	->  print_trace(A),
+	    write('xmi:id is '),
+	    att('xmi:id', D, C, _),
+	    write(D),
+	    nl,
+	    nl,
+	    trace_elem(A)
+	;   recorded(access, A)
+	->  trace_elem(A)
+	;   recorded(metamodel, A)
+	->  true
+	;   A=objectM(C, D, E, F, G, H)
+	->  trace_elem(object(C, D, E, F, G, H))
+	;   true
+	).
+
+:- dynamic association/3.
+
+
+transform(A) :-
+	clean_atl,
+	tell('transformation.log'),
+	transform_files(A).
+
+:- dynamic associationObjectsM/4.
+
+associationObjectsM(rl, has_key, '24k', '12r').
+associationObjectsM(rl, has_key, '37k', '18r').
+associationObjectsM(rl, has, '12t', '12r').
+associationObjectsM(rl, has, '18t', '18r').
+associationObjectsM(rl, table, '12r', '12t').
+associationObjectsM(rl, table, '18r', '18t').
+associationObjectsM(rl, is_key, '12r', '24k').
+associationObjectsM(rl, is_key, '18r', '37k').
+
+:- dynamic data_name/3.
+
+data_name(er, A, B) :-
+	data(er, A, [name(B), container(_)]).
+
+:- dynamic role_has_role/3.
+
+role_has_role(er, A, B) :-
+	associationEnds(er, has_role, A, B).
+
+inverse2_row(A, D) :-
+	associationEnds(er, has, A, B),
+	associationEnds(er, has_role, B, C),
+	associationEnds(er, is_role, C, D),
+	role_navigable(er, D, true).
+
+load_atts(C, B, A) :-
+	load_att(A, D),
+	E=..[B, C, A, D],
+	assert(E).
+
+:- dynamic (rule)/1.
+:- multifile (rule)/1.
+
+
+:- dynamic role_navigable/3.
+
+role_navigable(er, A, B) :-
+	role(er, A, [name(_), navigable(B), min(_), max(_)]).
+
+:- dynamic qualifier/3.
+
+qualifier(er, 63, [name(id_student), type(int)]).
+qualifier(er, 67, [name(id_course), type(int)]).
+
+load_input_model :-
+	input(_, memory), !.
+load_input_model :-
+	input(er, A),
+	xmi_load(A),
+	load_ecore(er).
+
+:- dynamic row_is_key/3.
+
+row_is_key(rl, A, B) :-
+	associationEnds(rl, is_key, A, B).
+
+:- dynamic table_has/3.
+
+table_has(rl, A, B) :-
+	associationEnds(rl, has, A, B).
+
+:- dynamic role/3.
+
+role(er, 50, [name(is_registered), max('5')]).
+role(er, 56, [name(register), navigable(true), max('5')]).
+
+generate_output_metamodel :-
+	output(A, _),
+	generate_metamodel(A).
+
+:- dynamic col_er2rl/1.
+
+col_er2rl(A) :-
+	attribute_id(er, A),
+	B=false,
+	attribute_key(er, A, B),
+	true.
+
+:- dynamic foreign_id/2.
+
+foreign_id(rl, A) :-
+	foreign(rl, A, [name(_), type(_)]).
+
+:- dynamic relation_id/2.
+
+relation_id(er, A) :-
+	relation(er, A, [name(_)]).
+
+trace_atl(B, A) :-
+	nl,
+	write('TRACER............................'),
+	nl,
+	write('Tracing the element: '),
+	write(A),
+	nl,
+	rewrite(B, C),
+	[C],
+	generate_metamodels,
+	generate_rules,
+	catch(load_models, _, (write('Compiler: Syntax error'), nl, fail)),
+	catch(trace_elem(object(_, _, A, _, _, _)), _, (write('Compiler: Syntax error'), nl, fail)),
+	clean_transformation.
+
+:- dynamic key_type/3.
+
+key_type(rl, A, B) :-
+	key(rl, A, [name(_), type(B)]).
+
+generate_vars([], []) :- !.
+generate_vars([B|C], [A|D]) :-
+	A=..[B, _],
+	generate_vars(C, D).
+
+:- dynamic attribute_key/3.
+
+attribute_key(er, A, B) :-
+	attribute(er, A, [name(_), type(_), key(B)]).
+
+resolveTemp(B, C, A) :-
+	object(_, _, A, B, _, C).
+
+:- dynamic table_id/2.
+
+table_id(rl, A) :-
+	table(rl, A, [name(_)]).
+
+%   Foreign: rl_read_init_file/1
+
+:- dynamic role_is/3.
+
+role_is(er, A, B) :-
+	associationEnds(er, is, A, B).
+
+:- dynamic data_container/3.
+
+data_container(er, A, B) :-
+	data(er, A, [name(_), container(B)]).
+
+pointer_to2(B, [A|_], C) :-
+	A=..[B, C].
+pointer_to2(A, [_|B], C) :-
+	pointer_to2(A, B, C).
+
+debug_condition(A, B, C) :-
+	write('Debugger: Rule Condition of: '),
+	write(A),
+	write(' cannot be satisfied.'),
+	nl,
+	debug_sequence(B, C).
+
+generate_associations(E, F, A) :-
+	member([C, B], A),
+	concat_atom(D, ' ', B),
+	generate_each_association(C, D, E, F).
+
+load_output_model_deb :-
+	output(A, memory), !,
+	load_model_deb(A).
+load_output_model_deb :-
+	output(A, B),
+	load_model_deb(A),
+	[mm2xmi],
+	xmi_write(B).
+
+generate_head((G::C#A, M), D, F) :- !,
+	A=..[B|H],
+	class_def(B, E, C),
+	clean_vars(D, J),
+	generate_vars(E, I),
+	generate_bindings(C, F, G, B, H, D, I, K),
+	assert((object(C, B, L, J, I, G):-F, K, generate_ids(J, G, L))),
+	generate_head(M, D, F).
+generate_head(G::C#A, D, F) :-
+	A=..[B|H],
+	class_def(B, E, C),
+	clean_vars(D, J),
+	generate_vars(E, I),
+	generate_bindings(C, F, G, B, H, D, I, K),
+	assert((object(C, B, L, J, I, G):-F, K, generate_ids(J, G, L))).
+
+:- dynamic att2/4.
+
+att2(name, B, A, A) :-
+	class_name(mm2, A, B).
+att2('xmi:type', 'uml:Class', A, A) :-
+	class_id(mm2, A).
+att2('xmi:id', A, A, A) :-
+	class_id(mm2, A).
+att2('xmi:Extender', 'Visual Paradigm for UML', A, A) :-
+	associationEnds(mm2, extensions, _, A).
+att2(name, B, A, A) :-
+	stereotype_name(mm2, A, B).
+att2('xmi:value', A, [A, 1], A) :-
+	stereotype_id(mm2, A).
+att2('xmi:type', 'uml:Stereotype', A, A) :-
+	stereotype_id(mm2, A).
+att2('xmi:id', A, A, A) :-
+	stereotype_id(mm2, A).
+att2(name, B, A, A) :-
+	property_name(mm2, A, B).
+att2(type, B, A, A) :-
+	property_type(mm2, A, B).
+att2('xmi:id', A, A, A) :-
+	property_id(mm2, A).
+att2('xmi:type', 'uml:Property', A, A) :-
+	property_id(mm2, A).
+att2(isNavigable, true, A, A) :-
+	property_id(mm2, A).
+att2(aggregation, composite, A, A) :-
+	property_isComposite(mm2, A, true).
+att2(aggregation, none, A, A) :-
+	property_isComposite(mm2, A, false).
+att2(value, B, [A, 1], [A, 1]) :-
+	property_lower(mm2, A, B).
+att2(value, B, [A, 2], [A, 2]) :-
+	property_upper(mm2, A, B).
+att2('xmi:id', A, [A, 1], [A, 1]) :-
+	property_id(A, mm2).
+att2('xmi:id', A, [A, 2], [A, 2]) :-
+	property_id(A, mm2).
+att2('xmi:type', 'uml:LiteralString', [A, 1], [A, 1]) :-
+	property_id(mm2, A).
+att2('xmi:type', 'uml:LiteralString', [A, 2], [A, 2]) :-
+	property_id(mm2, A).
+att2(name, B, A, A) :-
+	association_name(mm2, A, B).
+att2('xmi:id', A, A, A) :-
+	association_id(mm2, A).
+att2(association, B, A, A) :-
+	associationEnds(mm2, ownedEnd, B, A).
+att2('xmi:idref', A, [A, 0], [A, 0]) :-
+	associationEnds(mm2, ownedEnd, _, A).
+att2('xmi:type', 'uml:Association', A, A) :-
+	association_id(mm2, A).
+
+:- dynamic role_id/2.
+
+role_id(er, A) :-
+	role(er, A, [name(_), navigable(_), min(_), max(_)]).
+
+:- dynamic row_table/3.
+
+row_table(rl, A, B) :-
+	associationEnds(rl, table, A, B).
+
+:- dynamic'metamodelA:root'/3.
+
+'metamodelA:root'(er, 2, ['xmi:version'('2.0'), 'xmlns:xmi'('http://www.omg.org/XMI'), 'xmlns:metamodelA'('http://www.example.org/metamodelA')]).
+
+:- dynamic row/3.
+
+row(rl, A, [name(B)]) :-
+	objectM(rl, row, A, _, [name(B)], _).
+
+facts([], _) :- !.
+facts([element(A, E, F)|G], B) :- !,
+	update(C),
+	update-ecore(A, D),
+	assert(element(A, B, C)),
+	assert(element-ecore(A, D, C)),
+	facts_att(E, C),
+	facts(F, C),
+	facts(G, B).
+facts([_|A], B) :-
+	facts(A, B).
+
+generate_access(A, G, [], E, D) :- !,
+	atom_concat(A, '_', B),
+	atom_concat(B, id, C),
+	F=..[C, D, E],
+	assert((F:-G)),
+	recorda(access, F).
+generate_access(B, J, [A|K], G, F) :-
+	A=..[D, H],
+	atom_concat(B, '_', C),
+	atom_concat(C, D, E),
+	I=..[E, F, G, H],
+	assert((I:-J)),
+	recorda(metamodel, I),
+	generate_access(B, J, K, G, F).
+
+:- dynamic key_er2rl/1.
+
+key_er2rl(A) :-
+	attribute_id(er, A),
+	B=true,
+	attribute_key(er, A, B),
+	true.
+
+load_op :-
+	op(1040, xfy, [ (from)]),
+	op(1030, xfy, [ (to)]),
+	op(1010, xfy, [ (and)]),
+	op(885, xfy, [@]),
+	op(1020, fx, [ (rule)]),
+	op(890, xfy, [#]),
+	op(895, xfy, [::]),
+	op(1000, xfy, [ (==)]),
+	op(1000, xfy, [ (=\=)]),
+	op(890, xfy, [<-]),
+	op(1020, xfy, [ (where)]).
+load_op :-
+	op(1040, xfy, [ (from)]),
+	op(1030, xfy, [ (to)]),
+	op(1010, xfy, [ (and)]),
+	op(885, xfy, [@]),
+	op(1020, fx, [ (rule)]),
+	op(890, xfy, [#]),
+	op(895, xfy, [::]),
+	op(1000, xfy, [ (==)]),
+	op(1000, xfy, [ (=\=)]),
+	op(890, xfy, [<-]),
+	op(1020, xfy, [ (where)]).
+
+rewrite(A, C) :-
+	open(A, read, D),
+	atom_concat(B, '.ptl', A),
+	atom_concat(B, '.pl', C),
+	open(C, write, E),
+	rewrite_file(D, E),
+	close(E),
+	close(D).
+
+:- dynamic attribute_type/3.
+
+attribute_type(er, A, B) :-
+	attribute(er, A, [name(_), type(B), key(_)]).
+
+:- dynamic store_id/2.
+
+store_id(er, A) :-
+	store(er, A, [name(_)]).
+
+generate_bindings(_, _, _, _, [], _, _, true).
+generate_bindings(A, B, C, D, [_<-sequence([])|E], F, G, H) :- !,
+	generate_bindings(A, B, C, D, E, F, G, H).
+generate_bindings(A, B, C, D, [E<-sequence([F|M])|I], G, H, K) :- !,
+	generate_bind(A, B, C, D, E, F, G, H, J),
+	generate_bindings(A, B, C, D, I, G, H, L),
+	(   J\=true
+	->  K= (L, J)
+	;   K=L
+	),
+	generate_bindings(A, B, C, D, [E<-sequence(M)|I], G, H, K).
+generate_bindings(A, B, C, D, [E<-F|I], G, H, K) :-
+	generate_bind(A, B, C, D, E, F, G, H, J),
+	generate_bindings(A, B, C, D, I, G, H, L),
+	(   J\=true
+	->  K= (L, J)
+	;   K=L
+	).
+
+:- dynamic qualifier_has/3.
+
+qualifier_has(er, A, B) :-
+	associationEnds(er, has, A, B).
+
+debug_object(A, B, C) :-
+	write('Debugger: Objects of: '),
+	write(A),
+	write(' cannot be created.'),
+	nl,
+	debug_sequence(B, C).
+
+generate_each(H, A, I, G) :-
+	concat(C, B, A),
+	concat('.', D, B),
+	concat(//@, E, C),
+	atom_number(D, F),
+	element-ecore(E, F, J), !,
+	K=..[associationEnds, G, H, I, J],
+	assert(K).
+
+:- dynamic table2_er2rl/1.
+
+table2_er2rl(A) :-
+	role_id(er, A),
+	B=true,
+	role_navigable(er, A, B),
+	true,
+	C=D,
+	role_max(er, A, C),
+	resolveTemp(A, '5', D).
+
+retrieve_each_one([], []).
+retrieve_each_one([B|I], [element(A, E, H)|J]) :-
+	element2(A, _, B), !,
+	findall(C=D, att2(C, D, B, _), E),
+	findall(F, element2(_, B, F), G),
+	retrieve_each_one(G, H),
+	retrieve_each_one(I, J).
+
+:- dynamic qualifier_type/3.
+
+qualifier_type(er, A, B) :-
+	qualifier(er, A, [name(_), type(B)]).
+
+xmi(A) :-
+	retrieve_all(A).
+
+:- dynamic att/4.
+
+att('xmi:version', '2.0', 2, 3).
+att('xmlns:xmi', 'http://www.omg.org/XMI', 2, 4).
+att('xmlns:metamodelA', 'http://www.example.org/metamodelA', 2, 5).
+att(contains, '//@data.0', 6, 7).
+att(name, 'DB_Students', 6, 8).
+att(contains, '//@data.1', 9, 10).
+att(name, 'DB_Courses', 9, 11).
+att(contained_in, '//@store.0', 12, 13).
+att(name, 'Student', 12, 14).
+att(container, the_students, 12, 15).
+att(attr_of, '//@attribute.2 //@attribute.1 //@attribute.0', 12, 16).
+att(role_of, '//@role.0', 12, 17).
+att(contained_in, '//@store.1', 18, 19).
+att(name, 'Course', 18, 20).
+att(container, the_courses, 18, 21).
+att(attr_of, '//@attribute.3 //@attribute.4 //@attribute.5', 18, 22).
+att(role_of, '//@role.1', 18, 23).
+att(name, id_student, 24, 25).
+att(type, int, 24, 26).
+att(key, true, 24, 27).
+att(is, '//@data.0', 24, 28).
+att(name, name, 29, 30).
+att(type, 'String', 29, 31).
+att(is, '//@data.0', 29, 32).
+att(name, age, 33, 34).
+att(type, int, 33, 35).
+att(is, '//@data.0', 33, 36).
+att(name, id_course, 37, 38).
+att(type, int, 37, 39).
+att(key, true, 37, 40).
+att(is, '//@data.1', 37, 41).
+att(name, title, 42, 43).
+att(type, 'String', 42, 44).
+att(is, '//@data.1', 42, 45).
+att(name, credits, 46, 47).
+att(type, float, 46, 48).
+att(is, '//@data.1', 46, 49).
+att(name, is_registered, 50, 51).
+att(max, '5', 50, 52).
+att(has_role, '//@relation.0', 50, 53).
+att(is, '//@qualifier.0', 50, 54).
+att(is_data, '//@data.0', 50, 55).
+att(name, register, 56, 57).
+att(navigable, true, 56, 58).
+att(max, '5', 56, 59).
+att(has_role, '//@relation.0', 56, 60).
+att(is, '//@qualifier.1', 56, 61).
+att(is_data, '//@data.1', 56, 62).
+att(name, id_student, 63, 64).
+att(type, int, 63, 65).
+att(has, '//@role.0', 63, 66).
+att(name, id_course, 67, 68).
+att(type, int, 67, 69).
+att(has, '//@role.1', 67, 70).
+att(is_role, '//@role.0 //@role.1', 71, 72).
+
+load_model(A) :-
+	retractall(objectM(A, _, _, _, _, _)),
+	fail.
+load_model(A) :-
+	retractall(associationObjectsM(A, _, _, _)),
+	fail.
+load_model(A) :-
+	object(A, B, C, D, E, F),
+	assert(objectM(A, B, C, D, E, F)),
+	fail.
+load_model(A) :-
+	associationObjects(A, B, C, D),
+	assert(associationObjectsM(A, B, C, D)),
+	fail.
+load_model(_).
+
+generate_bind(_, _, _, _, A, C, D, B, F) :-
+	pointer_to2(A, B, G), !,
+	encode(C, D, H, E),
+	(   E\=true
+	->  F= (E, G=H)
+	;   F= (G=H)
+	).
+generate_bind(C, G, K, B, A, D, E, _, true) :-
+	role_def(A, B, _, _, _, C),
+	encode(D, E, F, H),
+	clean_vars(E, J),
+	assert((associationObjects(C, A, I, F):-G, H, object(C, B, I, J, _, K))).
+
+:- dynamic role_min/3.
+
+role_min(er, A, B) :-
+	role(er, A, [name(_), navigable(_), min(B), max(_)]).
+
+generate_heads(B, C, E, D, A) :-
+	F=..[objectM, A, B, C, _, D, _],
+	assert((E:-F)),
+	recorda(head, E).
+
+:- dynamic key/3.
+
+key(rl, A, [name(B), type(C)]) :-
+	objectM(rl, key, A, _, [name(B), type(C)], _).
+
+:- dynamic col_type/3.
+
+col_type(rl, A, B) :-
+	col(rl, A, [name(_), type(B)]).
+
+:- dynamic foreign1_er2rl/1.
+
+foreign1_er2rl((A, B)) :-
+	qualifier_id(er, A),
+	role_id(er, B),
+	C=B,
+	qualifier_has(er, A, C),
+	role_id(er, B),
+	D=true,
+	role_navigable(er, B, D),
+	true.
+
+update(A) :-
+	identifier(B), !,
+	A is B+1,
+	retract(identifier(B)),
+	assert(identifier(A)).
+update(A) :-
+	A=1,
+	assert(identifier(1)).
+
+:- dynamic relation/3.
+
+relation(er, 71, []).
+
+load_xml(A, B) :-
+	load_structure(A, B, []).
+
+generate_elems([], _) :- !.
+generate_elems([class(A, B)|G], C) :- !,
+	assert(class_def(A, B, C)),
+	generate_vars(B, D),
+	F=..[A, C, E, D],
+	(   output(C)
+	->  generate_heads(A, E, F, D, C)
+	;   true
+	),
+	generate_access(A, F, D, E, C),
+	generate_elems(G, C).
+generate_elems([role(A, B, C, D, E)|L], F) :- !,
+	assert(role_def(A, B, C, D, E, F)),
+	atom_concat(B, '_', G),
+	atom_concat(G, A, H),
+	I=..[H, F, J, K],
+	assert((I:-associationEnds(F, A, J, K))),
+	recorda(metamodel, I),
+	generate_elems(L, F).
+
+validate_rules(A) :-
+	[A],
+	validate_rules_one.
+
+:- dynamic vrule/1.
+:- multifile vrule/1.
+
+
+:- dynamic data_role_of/3.
+
+data_role_of(er, A, B) :-
+	associationEnds(er, role_of, A, B).
+
+:- dynamic store/3.
+
+store(er, 6, [name('DB_Students')]).
+store(er, 9, [name('DB_Courses')]).
+
+debug_sequence((B, E), A) :- !,
+	(   findall(A, B, C),
+	    C=[]
+	->  write('Found error in: '),
+	    B=..[D|_],
+	    write(D),
+	    nl
+	;   B,
+	    debug_sequence(E, A)
+	).
+debug_sequence(B, A) :-
+	(   findall(A, B, C),
+	    C=[]
+	->  write('Found error in: '),
+	    B=..[D|_],
+	    write(D),
+	    nl
+	;   true
+	).
+
+:- dynamic data_contained_in/3.
+
+data_contained_in(er, A, B) :-
+	associationEnds(er, contained_in, A, B).
+
+load_models_deb :-
+	load_input_model_deb,
+	load_output_model_deb.
+
+load_associations(C, D) :-
+	findall([A, B], (att(A, B, C, _), sub_atom(B, 0, _, _, //@)), E),
+	generate_associations(C, D, E).
+
+:- dynamic col_has_col/3.
+
+col_has_col(rl, A, B) :-
+	associationEnds(rl, has_col, A, B).
+
+inverse_qualifier(A, E) :-
+	associationEnds(er, has_role, A, B),
+	associationEnds(er, is_role, B, C),
+	role_navigable(er, C, false),
+	associationEnds(er, is, C, D),
+	resolveTemp((D, C), f2, E).
+
+:- dynamic element/3.
+
+element('metamodelA:root', 1, 2).
+element(store, 2, 6).
+element(store, 2, 9).
+element(data, 2, 12).
+element(data, 2, 18).
+element(attribute, 2, 24).
+element(attribute, 2, 29).
+element(attribute, 2, 33).
+element(attribute, 2, 37).
+element(attribute, 2, 42).
+element(attribute, 2, 46).
+element(role, 2, 50).
+element(role, 2, 56).
+element(qualifier, 2, 63).
+element(qualifier, 2, 67).
+element(relation, 2, 71).
+
+generate_conditions((A and D), (B, E), C) :- !,
+	encode_boolean(A, B, C),
+	generate_conditions(D, E, C).
+generate_conditions(A, B, C) :-
+	encode_boolean(A, B, C).
+
+retrieve_all(C) :-
+	findall(A, element2(ownedMember, 0, A), B),
+	retrieve_each_one(B, C).
+
+:- dynamic col/3.
+
+col(rl, A, [name(B), type(C)]) :-
+	objectM(rl, col, A, _, [name(B), type(C)], _).
+
+facts_att([], _) :- !.
+facts_att([A=B|E], C) :-
+	update(D),
+	assert(att(A, B, C, D)),
+	facts_att(E, C).
+
+:- dynamic role_name/3.
+
+role_name(er, A, B) :-
+	role(er, A, [name(B), navigable(_), min(_), max(_)]).
+
+generate_input_metamodel :-
+	input(_, memory), !.
+generate_input_metamodel :-
+	input(A, _),
+	generate_metamodel(A).
+
+output(A) :-
+	output(A, _).
+
+:- dynamic role_def/6.
+
+role_def(contains, store, data, [49], [49], er).
+role_def(contained_in, data, store, [49], [49], er).
+role_def(attr_of, data, attribute, [48], [42], er).
+role_def(is, attribute, data, [49], [49], er).
+role_def(has_role, role, relation, [49], [49], er).
+role_def(is_role, relation, role, [49], [42], er).
+role_def(has, qualifier, role, [49], [49], er).
+role_def(is, role, qualifier, [48], [42], er).
+role_def(is_data, role, data, [49], [49], er).
+role_def(role_of, data, role, [49], [49], er).
+role_def(has, table, row, [49], [49], rl).
+role_def(table, row, table, [49], [49], rl).
+role_def(has_key, key, row, [49], [49], rl).
+role_def(is_key, row, key, [48], [42], rl).
+role_def(is_foreign, row, foreign, [48], [42], rl).
+role_def(has_foreign, foreign, row, [49], [49], rl).
+role_def(has_col, col, row, [49], [49], rl).
+role_def(is_col, row, col, [48], [42], rl).
+
+:- dynamic key_name/3.
+
+key_name(rl, A, B) :-
+	key(rl, A, [name(B), type(_)]).
+
+validate_body(B, A) :-
+	call(A), !,
+	write('Validation failure on rule: '),
+	write(B),
+	nl.
+
+encode_seq((A, D), B, (C, E), F) :- !,
+	encode(A, B, C, H),
+	encode_seq(D, B, E, G),
+	F= (G, H).
+encode_seq(A, B, C, D) :-
+	encode(A, B, C, D).
+
+debugging_files([]) :- !.
+debugging_files([A|B]) :-
+	debug_atl(A),
+	debugging_files(B).
+
+:- dynamic store_name/3.
+
+store_name(er, A, B) :-
+	store(er, A, [name(B)]).
+
+:- dynamic role_is_data/3.
+
+role_is_data(er, A, B) :-
+	associationEnds(er, is_data, A, B).
+
+encode(A, _, A, true) :-
+	number(A), !.
+encode(true, _, true, true) :- !.
+encode(false, _, false, true) :- !.
+encode(A, _, B, true) :-
+	is_list(A), !,
+	string_to_atom(A, B).
+encode(A@E@L, B, P, (F, M)) :- !,
+	pointer_to(A, B, I, C, H),
+	atom_concat(C, '_', D),
+	atom_concat(D, E, G),
+	F=..[G, H, I, O],
+	role_def(E, C, J, _, _, H),
+	atom_concat(J, '_', K),
+	atom_concat(K, L, N),
+	M=..[N, H, O, P].
+encode(A@E, B, J, F) :- !,
+	pointer_to(A, B, I, C, H),
+	atom_concat(C, '_', D),
+	atom_concat(D, E, G),
+	F=..[G, H, I, J].
+encode(resolveTemp(A, F), B, G, C) :- !,
+	encode_seq(A, B, E, D),
+	C= (D, resolveTemp(E, F, G)).
+encode(A, D, F, H) :-
+	compound(A),
+	A=..[B|C],
+	atomic(B), !,
+	encode_list(C, D, E, I),
+	append(E, [F], G),
+	J=..[B|G],
+	H= (I, J).
+encode(A, B, C, F) :-
+	pointer_to(A, B, C, D, H), !,
+	atom_concat(D, '_', E),
+	atom_concat(E, id, G),
+	F=..[G, H, C].
+encode(A, B, E, C) :-
+	atomic(A), !,
+	clean_vars(B, D),
+	C=resolveTemp(D, A, E).
+
+debug_term(A) :-
+	clause(A, (B, G)),
+	B=..[E, C],
+	(   findall(C, B, D),
+	    D=[]
+	->  clause(B, F),
+	    debug_condition(E, F, C), !
+	;   findall(C, (B, G), D),
+	    D=[]
+	->  B,
+	    debug_object(E, G, C), !
+	;   B,
+	    G
+	).
+
+:- dynamic store_contains/3.
+
+store_contains(er, A, B) :-
+	associationEnds(er, contains, A, B).
+
+load_input_model_deb :-
+	input(_, memory), !.
+load_input_model_deb :-
+	input(_, A),
+	[xmi2mm],
+	xmi_load(A).
+
+:- dynamic row_is_col/3.
+
+row_is_col(rl, A, B) :-
+	associationEnds(rl, is_col, A, B).
+
+:- dynamic (-)/2.
+
+update-ecore(A, B) :-
+	identifier-ecore(A, C), !,
+	B is C+1,
+	retract(identifier-ecore(A, C)),
+	assert(identifier-ecore(A, B)).
+update-ecore(B, A) :-
+	A=0,
+	assert(identifier-ecore(B, A)).
+identifier-ecore('metamodelA:root', 0).
+element-ecore('metamodelA:root', 0, 2).
+element-ecore(store, 0, 6).
+identifier-ecore(store, 1).
+element-ecore(store, 1, 9).
+element-ecore(data, 0, 12).
+identifier-ecore(data, 1).
+element-ecore(data, 1, 18).
+element-ecore(attribute, 0, 24).
+element-ecore(attribute, 1, 29).
+element-ecore(attribute, 2, 33).
+element-ecore(attribute, 3, 37).
+element-ecore(attribute, 4, 42).
+identifier-ecore(attribute, 5).
+element-ecore(attribute, 5, 46).
+element-ecore(role, 0, 50).
+identifier-ecore(role, 1).
+element-ecore(role, 1, 56).
+element-ecore(qualifier, 0, 63).
+identifier-ecore(qualifier, 1).
+element-ecore(qualifier, 1, 67).
+identifier-ecore(relation, 0).
+element-ecore(relation, 0, 71).
+
+:- dynamic element2/3.
+
+element2(ownedMember, 0, A) :-
+	class_id(mm2, A).
+element2(ownedMember, 0, A) :-
+	stereotype_id(mm2, A).
+element2(ownedMember, 0, A) :-
+	association_id(mm2, A).
+element2(ownedAttribute, A, B) :-
+	associationEnds(mm2, ownedAttribute, A, B),
+	property_id(mm2, B).
+element2('xmi:Extension', A, B) :-
+	associationEnds(mm2, extensions, A, B).
+element2(appliedStereotype, A, [B, 1]) :-
+	associationEnds(mm2, extensions, _, A),
+	associationEnds(mm2, stereotype, A, B).
+element2(ownedEnd, A, B) :-
+	associationEnds(mm2, ownedEnd, A, B).
+element2(lowerValue, A, [A, 1]) :-
+	associationEnds(mm2, ownedEnd, _, A).
+element2(upperValue, A, [A, 2]) :-
+	associationEnds(mm2, ownedEnd, _, A).
+element2(memberEnd, A, [B, 0]) :-
+	associationEnds(mm2, ownedEnd, A, B).
+
+generate_pointers((G::E#A, I), (F, J), (C, K)) :- !,
+	atom_concat(A, '_', B),
+	atom_concat(B, id, D),
+	C=..[D, E, H],
+	F=..[G, H, A, E],
+	generate_pointers(I, J, K).
+generate_pointers(G::E#A, F, C) :-
+	atom_concat(A, '_', B),
+	atom_concat(B, id, D),
+	C=..[D, E, H],
+	F=..[G, H, A, E].
+:- dynamic object/6.
+
+object(rl, table, D, A, [name(B)], t) :-
+	table2_er2rl(A),
+	true,
+	role_name(er, A, C),
+	B=C,
+	generate_ids(A, t, D).
+object(rl, row, G, A, [name(E)], r) :-
+	table2_er2rl(A),
+	true,
+	true,
+	role_is_data(er, A, B),
+	data_name(er, B, D),
+	role_name(er, A, C),
+	concat(C, D, F),
+	E=F,
+	generate_ids(A, r, G).
+object(rl, key, F, A, [name(D), type(B)], k) :-
+	key_er2rl(A),
+	true,
+	attribute_type(er, A, C),
+	B=C,
+	attribute_name(er, A, E),
+	D=E,
+	generate_ids(A, k, F).
+object(rl, col, F, A, [name(D), type(B)], c) :-
+	col_er2rl(A),
+	true,
+	attribute_type(er, A, C),
+	B=C,
+	attribute_name(er, A, E),
+	D=E,
+	generate_ids(A, c, F).
+object(rl, foreign, L, (A, B), [name(J), type(C)], f1) :-
+	foreign1_er2rl((A, B)),
+	true,
+	qualifier_type(er, A, D),
+	C=D,
+	true,
+	qualifier_name(er, A, I),
+	true,
+	role_is_data(er, B, E),
+	data_name(er, E, G),
+	role_name(er, B, F),
+	concat(F, G, H),
+	concat(H, I, K),
+	J=K,
+	generate_ids((A, B), f1, L).
+object(rl, foreign, L, (A, B), [name(J), type(C)], f2) :-
+	foreign2_er2rl((A, B)),
+	true,
+	qualifier_type(er, A, D),
+	C=D,
+	true,
+	qualifier_name(er, A, I),
+	true,
+	role_is_data(er, B, E),
+	data_name(er, E, G),
+	role_name(er, B, F),
+	concat(F, G, H),
+	concat(H, I, K),
+	J=K,
+	generate_ids((A, B), f2, L).
+object(rl, table, D, A, [name(B)], t) :-
+	table1_er2rl(A),
+	true,
+	data_container(er, A, C),
+	B=C,
+	generate_ids(A, t, D).
+object(rl, row, D, A, [name(B)], r) :-
+	table1_er2rl(A),
+	true,
+	data_name(er, A, C),
+	B=C,
+	generate_ids(A, r, D).
+

@@ -1,0 +1,379 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<metamodelA:root
+    xmi:version="2.0"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xmlns:xmi="http://www.omg.org/XMI"
+    xmlns:metamodelA="http://www.example.org/metamodelA"
+    xsi:schemaLocation="http://www.example.org/metamodelA metamodelA.ecore">
+  <store name="s1" contains="//@data.0 "/>
+  <store name="s1" contains="//@data.1 "/>
+  <store name="s1" contains="//@data.2 "/>
+  <store name="s1" contains="//@data.3 "/>
+  <store name="s1" contains="//@data.4 "/>
+  <store name="s1" contains="//@data.5 "/>
+  <store name="s1" contains="//@data.6 "/>
+  <store name="s1" contains="//@data.7 "/>
+  <store name="s1" contains="//@data.8 "/>
+  <store name="s1" contains="//@data.9 "/>
+  <store name="s2" contains="//@data.10 "/>
+  <store name="s2" contains="//@data.11 "/>
+  <store name="s2" contains="//@data.12 "/>
+  <store name="s2" contains="//@data.13 "/>
+  <store name="s2" contains="//@data.14 "/>
+  <store name="s2" contains="//@data.15 "/>
+  <store name="s2" contains="//@data.16 "/>
+  <store name="s2" contains="//@data.17 "/>
+  <store name="s2" contains="//@data.18 "/>
+  <store name="s2" contains="//@data.19 "/>
+  <data
+      name="d1"
+      container="c1"
+      attr_of="//@attribute.0 //@attribute.10 "
+      contained_in="//@store.0 "
+      role_of="//@role.0 "/>
+  <data
+      name="d1"
+      container="c1"
+      attr_of="//@attribute.1 //@attribute.11 "
+      contained_in="//@store.1 "
+      role_of="//@role.1 "/>
+  <data
+      name="d1"
+      container="c1"
+      attr_of="//@attribute.2 //@attribute.12 "
+      contained_in="//@store.2 "
+      role_of="//@role.2 "/>
+  <data
+      name="d1"
+      container="c1"
+      attr_of="//@attribute.3 //@attribute.13 "
+      contained_in="//@store.3 "
+      role_of="//@role.3 "/>
+  <data
+      name="d1"
+      container="c1"
+      attr_of="//@attribute.4 //@attribute.14 "
+      contained_in="//@store.4 "
+      role_of="//@role.4 "/>
+  <data
+      name="d1"
+      container="c1"
+      attr_of="//@attribute.5 //@attribute.15 "
+      contained_in="//@store.5 "
+      role_of="//@role.5 "/>
+  <data
+      name="d1"
+      container="c1"
+      attr_of="//@attribute.6 //@attribute.16 "
+      contained_in="//@store.6 "
+      role_of="//@role.6 "/>
+  <data
+      name="d1"
+      container="c1"
+      attr_of="//@attribute.7 //@attribute.17 "
+      contained_in="//@store.7 "
+      role_of="//@role.7 "/>
+  <data
+      name="d1"
+      container="c1"
+      attr_of="//@attribute.8 //@attribute.18 "
+      contained_in="//@store.8 "
+      role_of="//@role.8 "/>
+  <data
+      name="d1"
+      container="c1"
+      attr_of="//@attribute.9 //@attribute.19 "
+      contained_in="//@store.9 "
+      role_of="//@role.9 "/>
+  <data
+      name="d2"
+      container="c2"
+      attr_of="//@attribute.20 //@attribute.30 "
+      contained_in="//@store.10 "
+      role_of="//@role.10 "/>
+  <data
+      name="d2"
+      container="c2"
+      attr_of="//@attribute.21 //@attribute.31 "
+      contained_in="//@store.11 "
+      role_of="//@role.11 "/>
+  <data
+      name="d2"
+      container="c2"
+      attr_of="//@attribute.22 //@attribute.32 "
+      contained_in="//@store.12 "
+      role_of="//@role.12 "/>
+  <data
+      name="d2"
+      container="c2"
+      attr_of="//@attribute.23 //@attribute.33 "
+      contained_in="//@store.13 "
+      role_of="//@role.13 "/>
+  <data
+      name="d2"
+      container="c2"
+      attr_of="//@attribute.24 //@attribute.34 "
+      contained_in="//@store.14 "
+      role_of="//@role.14 "/>
+  <data
+      name="d2"
+      container="c2"
+      attr_of="//@attribute.25 //@attribute.35 "
+      contained_in="//@store.15 "
+      role_of="//@role.15 "/>
+  <data
+      name="d2"
+      container="c2"
+      attr_of="//@attribute.26 //@attribute.36 "
+      contained_in="//@store.16 "
+      role_of="//@role.16 "/>
+  <data
+      name="d2"
+      container="c2"
+      attr_of="//@attribute.27 //@attribute.37 "
+      contained_in="//@store.17 "
+      role_of="//@role.17 "/>
+  <data
+      name="d2"
+      container="c2"
+      attr_of="//@attribute.28 //@attribute.38 "
+      contained_in="//@store.18 "
+      role_of="//@role.18 "/>
+  <data
+      name="d2"
+      container="c2"
+      attr_of="//@attribute.29 //@attribute.39 "
+      contained_in="//@store.19 "
+      role_of="//@role.19 "/>
+  <attribute name="a11" type="" key="true" is="//@data.0 "/>
+  <attribute name="a11" type="" key="true" is="//@data.1 "/>
+  <attribute name="a11" type="" key="true" is="//@data.2 "/>
+  <attribute name="a11" type="" key="true" is="//@data.3 "/>
+  <attribute name="a11" type="" key="true" is="//@data.4 "/>
+  <attribute name="a11" type="" key="true" is="//@data.5 "/>
+  <attribute name="a11" type="" key="true" is="//@data.6 "/>
+  <attribute name="a11" type="" key="true" is="//@data.7 "/>
+  <attribute name="a11" type="" key="true" is="//@data.8 "/>
+  <attribute name="a11" type="" key="true" is="//@data.9 "/>
+  <attribute name="a12" type="" key="false" is="//@data.0 "/>
+  <attribute name="a12" type="" key="false" is="//@data.1 "/>
+  <attribute name="a12" type="" key="false" is="//@data.2 "/>
+  <attribute name="a12" type="" key="false" is="//@data.3 "/>
+  <attribute name="a12" type="" key="false" is="//@data.4 "/>
+  <attribute name="a12" type="" key="false" is="//@data.5 "/>
+  <attribute name="a12" type="" key="false" is="//@data.6 "/>
+  <attribute name="a12" type="" key="false" is="//@data.7 "/>
+  <attribute name="a12" type="" key="false" is="//@data.8 "/>
+  <attribute name="a12" type="" key="false" is="//@data.9 "/>
+  <attribute name="a21" type="" key="true" is="//@data.10 "/>
+  <attribute name="a21" type="" key="true" is="//@data.11 "/>
+  <attribute name="a21" type="" key="true" is="//@data.12 "/>
+  <attribute name="a21" type="" key="true" is="//@data.13 "/>
+  <attribute name="a21" type="" key="true" is="//@data.14 "/>
+  <attribute name="a21" type="" key="true" is="//@data.15 "/>
+  <attribute name="a21" type="" key="true" is="//@data.16 "/>
+  <attribute name="a21" type="" key="true" is="//@data.17 "/>
+  <attribute name="a21" type="" key="true" is="//@data.18 "/>
+  <attribute name="a21" type="" key="true" is="//@data.19 "/>
+  <attribute name="a22" type="" key="false" is="//@data.10 "/>
+  <attribute name="a22" type="" key="false" is="//@data.11 "/>
+  <attribute name="a22" type="" key="false" is="//@data.12 "/>
+  <attribute name="a22" type="" key="false" is="//@data.13 "/>
+  <attribute name="a22" type="" key="false" is="//@data.14 "/>
+  <attribute name="a22" type="" key="false" is="//@data.15 "/>
+  <attribute name="a22" type="" key="false" is="//@data.16 "/>
+  <attribute name="a22" type="" key="false" is="//@data.17 "/>
+  <attribute name="a22" type="" key="false" is="//@data.18 "/>
+  <attribute name="a22" type="" key="false" is="//@data.19 "/>
+  <relation name="r" is_role="//@role.0 //@role.10 "/>
+  <relation name="r" is_role="//@role.1 //@role.11 "/>
+  <relation name="r" is_role="//@role.2 //@role.12 "/>
+  <relation name="r" is_role="//@role.3 //@role.13 "/>
+  <relation name="r" is_role="//@role.4 //@role.14 "/>
+  <relation name="r" is_role="//@role.5 //@role.15 "/>
+  <relation name="r" is_role="//@role.6 //@role.16 "/>
+  <relation name="r" is_role="//@role.7 //@role.17 "/>
+  <relation name="r" is_role="//@role.8 //@role.18 "/>
+  <relation name="r" is_role="//@role.9 //@role.19 "/>
+  <role
+      name="r1"
+      navigable="true"
+      min="0"
+      max="*"
+      has_role="//@relation.0 "
+      is="//@qualifier.0 "
+      is_data="//@data.0 "/>
+  <role
+      name="r1"
+      navigable="true"
+      min="0"
+      max="*"
+      has_role="//@relation.1 "
+      is="//@qualifier.1 "
+      is_data="//@data.1 "/>
+  <role
+      name="r1"
+      navigable="true"
+      min="0"
+      max="*"
+      has_role="//@relation.2 "
+      is="//@qualifier.2 "
+      is_data="//@data.2 "/>
+  <role
+      name="r1"
+      navigable="true"
+      min="0"
+      max="*"
+      has_role="//@relation.3 "
+      is="//@qualifier.3 "
+      is_data="//@data.3 "/>
+  <role
+      name="r1"
+      navigable="true"
+      min="0"
+      max="*"
+      has_role="//@relation.4 "
+      is="//@qualifier.4 "
+      is_data="//@data.4 "/>
+  <role
+      name="r1"
+      navigable="true"
+      min="0"
+      max="*"
+      has_role="//@relation.5 "
+      is="//@qualifier.5 "
+      is_data="//@data.5 "/>
+  <role
+      name="r1"
+      navigable="true"
+      min="0"
+      max="*"
+      has_role="//@relation.6 "
+      is="//@qualifier.6 "
+      is_data="//@data.6 "/>
+  <role
+      name="r1"
+      navigable="true"
+      min="0"
+      max="*"
+      has_role="//@relation.7 "
+      is="//@qualifier.7 "
+      is_data="//@data.7 "/>
+  <role
+      name="r1"
+      navigable="true"
+      min="0"
+      max="*"
+      has_role="//@relation.8 "
+      is="//@qualifier.8 "
+      is_data="//@data.8 "/>
+  <role
+      name="r1"
+      navigable="true"
+      min="0"
+      max="*"
+      has_role="//@relation.9 "
+      is="//@qualifier.9 "
+      is_data="//@data.9 "/>
+  <role
+      name="r2"
+      navigable="false"
+      min="0"
+      max="*"
+      has_role="//@relation.0 "
+      is="//@qualifier.10 "
+      is_data="//@data.10 "/>
+  <role
+      name="r2"
+      navigable="false"
+      min="0"
+      max="*"
+      has_role="//@relation.1 "
+      is="//@qualifier.11 "
+      is_data="//@data.11 "/>
+  <role
+      name="r2"
+      navigable="false"
+      min="0"
+      max="*"
+      has_role="//@relation.2 "
+      is="//@qualifier.12 "
+      is_data="//@data.12 "/>
+  <role
+      name="r2"
+      navigable="false"
+      min="0"
+      max="*"
+      has_role="//@relation.3 "
+      is="//@qualifier.13 "
+      is_data="//@data.13 "/>
+  <role
+      name="r2"
+      navigable="false"
+      min="0"
+      max="*"
+      has_role="//@relation.4 "
+      is="//@qualifier.14 "
+      is_data="//@data.14 "/>
+  <role
+      name="r2"
+      navigable="false"
+      min="0"
+      max="*"
+      has_role="//@relation.5 "
+      is="//@qualifier.15 "
+      is_data="//@data.15 "/>
+  <role
+      name="r2"
+      navigable="false"
+      min="0"
+      max="*"
+      has_role="//@relation.6 "
+      is="//@qualifier.16 "
+      is_data="//@data.16 "/>
+  <role
+      name="r2"
+      navigable="false"
+      min="0"
+      max="*"
+      has_role="//@relation.7 "
+      is="//@qualifier.17 "
+      is_data="//@data.17 "/>
+  <role
+      name="r2"
+      navigable="false"
+      min="0"
+      max="*"
+      has_role="//@relation.8 "
+      is="//@qualifier.18 "
+      is_data="//@data.18 "/>
+  <role
+      name="r2"
+      navigable="false"
+      min="0"
+      max="*"
+      has_role="//@relation.9 "
+      is="//@qualifier.19 "
+      is_data="//@data.19 "/>
+  <qualifier name="a11" type="" has="//@role.0 "/>
+  <qualifier name="a11" type="" has="//@role.1 "/>
+  <qualifier name="a11" type="" has="//@role.2 "/>
+  <qualifier name="a11" type="" has="//@role.3 "/>
+  <qualifier name="a11" type="" has="//@role.4 "/>
+  <qualifier name="a11" type="" has="//@role.5 "/>
+  <qualifier name="a11" type="" has="//@role.6 "/>
+  <qualifier name="a11" type="" has="//@role.7 "/>
+  <qualifier name="a11" type="" has="//@role.8 "/>
+  <qualifier name="a11" type="" has="//@role.9 "/>
+  <qualifier name="a21" type="" has="//@role.10 "/>
+  <qualifier name="a21" type="" has="//@role.11 "/>
+  <qualifier name="a21" type="" has="//@role.12 "/>
+  <qualifier name="a21" type="" has="//@role.13 "/>
+  <qualifier name="a21" type="" has="//@role.14 "/>
+  <qualifier name="a21" type="" has="//@role.15 "/>
+  <qualifier name="a21" type="" has="//@role.16 "/>
+  <qualifier name="a21" type="" has="//@role.17 "/>
+  <qualifier name="a21" type="" has="//@role.18 "/>
+  <qualifier name="a21" type="" has="//@role.19 "/>
+</metamodelA:root>
