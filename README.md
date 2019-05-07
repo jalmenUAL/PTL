@@ -1,0 +1,4 @@
+# PTL
+PROLOG BASED MODEL TRANSFORMATION LANGUAGE
+
+This is the implementation of the language PTL (Prolog based Transformation Language). It can be considered as a hybrid language in which ATL (Atlas Transformation Language)-style rules are combined with logic rules for defining transformations. ATL-style rules are used to define mappings from source models to target models while logic rules are used as helpers. The implementation of PTL is based on the encoding of the ATL-style rules by Prolog rules. Thus, PTL makes use of Prolog as a transformation engine. The proposed language can be also used for model validation, that is, for checking constraints on models and transformations. We have equipped our language with debugging and tracing capabilities which help developers to detect programming errors in PTL rules.  
